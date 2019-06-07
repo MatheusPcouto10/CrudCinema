@@ -28,7 +28,7 @@
 			</h:panelGrid>
 
 			
-			<h:dataTable value="#{consultaUsuarioController.listaUsuario}" var="obj">
+			<h:dataTable value="#{consultaClienteController.listaUsuario}" var="obj">
 				<h:column>
 					<f:facet name="header">Id</f:facet>
 					<h:outputLabel value="#{obj.id}" />
@@ -37,7 +37,7 @@
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
 					<h:commandLink value="#{obj.nome}"
-						actionListener="#{consultaUsuarioController.editar(obj.id)}">
+						actionListener="#{consultaClienteController.editar(obj.id)}">
 						<f:ajax execute="@this" render="@form" />
 					</h:commandLink>
 				</h:column>
@@ -45,7 +45,7 @@
 				<h:column>
 					<f:facet name="header">Login</f:facet>
 					<h:commandLink value="#{obj.login}"
-						actionListener="#{consultaUsuarioController.editar(obj.id)}" />
+						actionListener="#{consultaClienteController.editar(obj.id)}" />
 				</h:column>
 
 				<h:column>
