@@ -6,7 +6,17 @@
 	<title>Crud Cinema</title>
 </h:head>
 <h:body>
-	<h1>Acesso</h1>
-
+	<center>
+		<h1>Menu</h1>
+		<h2>Bem vindo #{menuController.clientLog.name}!!!</h2>
+		<h:messages style="color:red" />
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:commandButton value="Film" action="#{menuController.film}" />
+				<h:commandButton value="Client" action="#{menuController.client}" />
+				<h:commandButton value="Go Back" action="#{menuController.login}" />
+			</h:panelGrid>
+		</h:form>
+	</center>
 </h:body>
 </html>

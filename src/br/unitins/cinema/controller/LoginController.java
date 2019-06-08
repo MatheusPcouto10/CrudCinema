@@ -5,26 +5,30 @@ import javax.inject.Named;
 
 import br.unitins.cinema.application.Session;
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.dao.EmployeeDAO;
-import br.unitins.cinema.model.Employee;
+import br.unitins.cinema.dao.ClientDAO;
+import br.unitins.cinema.model.Client;
+
 
 @Named
 @RequestScoped
 public class LoginController {
 
-	private Employee employee;
+//	private Employee employee;
+	private Client client;
 	
 	public void login() {
-		EmployeeDAO dao = new EmployeeDAO();
+		ClientDAO cdao = new ClientDAO();
+		//EmployeeDAO dao = new EmployeeDAO();
 		// gerando o hash da senha informada na tela de login
 		
-		//String encryptPassword = Util.encrypt(getEmployee().getPassword());
+		String encryptPassword = Util.encrypt(getClient().getPassword());
 		
-		Employee employeeLog = dao.findEmployee(getEmployee().getEmail(), getEmployee().getPassword());
+		//Employee employeeLog = dao.findEmployee(getEmployee().getEmail(), getEmployee().getPassword());
+		Client clientLog = cdao.findClient(getClient().getEmail(), encryptPassword);
 		
 		// comparando os dados da tela de login com o banco de dados
-		if (employeeLog != null) {
-			Session.getInstance().setAttribute("EmployeeLogado", employeeLog);
+		if (clientLog != null) {
+			Session.getInstance().setAttribute("ClientLog", clientLog);
 			// login valido
 			Util.redirect("menu.xhtml");
 		} else 
@@ -33,18 +37,28 @@ public class LoginController {
 	}
 	
 	public void clean() {
-		setEmployee(null);
+		//setEmployee(null);
+		setClient(null);
 	}
 
-	public Employee getEmployee() {
-		if (employee == null) {
-			employee = new Employee();
+//	public Employee getEmployee() {
+//		if (employee == null) {
+//			employee = new Employee();
+//		}
+//		return employee;
+//	}
+	public Client getClient() {
+		if (client == null) {
+			client = new Client();
 		}
-		return employee;
+		return client;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+//	public void setEmployee(Employee employee) {
+//		this.employee = employee;
+//	}
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 }

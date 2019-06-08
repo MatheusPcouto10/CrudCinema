@@ -12,11 +12,11 @@
 	<h:form>
 		<h:panelGrid columns="2">
 
-			<h:outputLabel value="Login: " />
-			<h:inputText value="#{loginController.employee.email}" />
+			<h:outputLabel value="Email: " />
+			<h:inputText value="#{loginController.client.email}" />
 
-			<h:outputLabel value="Senha: " />
-			<h:inputText value="#{loginController.employee.password}" />
+			<h:outputLabel value="Password: " />
+			<h:inputSecret value="#{loginController.client.password}" />
 
 			<h:commandButton value="Entrar" action="#{loginController.login}" />
 			<h:commandButton value="Limpar" action="#{loginController.clean}" />

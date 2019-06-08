@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Movie Register</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<center>
+		<h1>Movie Register</h1>
+
+		<h:messages style="color:red" />
+		<h:form>
+			<h:panelGrid columns="2">
+
+				<h:outputLabel value="Name: " />
+				<h:inputText value="#{filmController.film.name}" />
+
+				<h:outputLabel value="Movie Genre: " />
+				<h:selectOneMenu value="#{filmController.film.movieGenre}">
+					<f:selectItem itemLabel="Choose ..." />
+					<f:selectItems value="#{filmController.listMovieGenre}"
+						var="movieGenre" itemLabel="#{movieGenre.label}"
+						itemValue="#{movieGenre}" />
+				</h:selectOneMenu>
+
+				<h:outputLabel value="Duration: " />
+				<h:inputText value="#{filmController.film.duration}" />
+
+				<h:outputLabel value="Director: " />
+				<h:inputText value="#{filmController.film.director}" />
+
+				<h:outputLabel value="Release Year: " />
+				<h:inputText value="#{filmController.film.releaseYear}" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="4">
+				<h:commandButton value="Add"
+					disabled="#{filmController.film.id != null}"
+					actionListener="#{filmController.create}" />
+
+				<h:commandButton value="Update"
+					disabled="#{filmController.film.id == null}"
+					actionListener="#{filmController.update}" />
+
+				<h:commandButton value="Delete"
+					disabled="#{filmController.film.id == null}"
+					actionListener="#{filmController.delete}" />
+
+				<h:commandButton value="Clean"
+					actionListener="#{filmController.clean}" />
+
+			</h:panelGrid>
+
+			<h:dataTable value="#{filmController.listFilm}" var="obj">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputLabel value="#{obj.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:commandLink value="#{obj.name}"
+						actionListener="#{filmController.edit(obj.id)}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Movie Genre</f:facet>
+					<h:outputLabel value="#{obj.movieGenre.label}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Duration</f:facet>
+					<h:commandLink value="#{obj.duration}"
+						actionListener="#{filmController.edit(obj.id)}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Director</f:facet>
+					<h:commandLink value="#{obj.director}"
+						actionListener="#{filmController.edit(obj.id)}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Release Year</f:facet>
+					<h:commandLink value="#{obj.releaseYear}"
+						actionListener="#{filmController.edit(obj.id)}" />
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+
+	</center>
+</h:body>
+
+</html>

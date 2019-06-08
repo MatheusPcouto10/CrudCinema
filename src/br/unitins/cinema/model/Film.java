@@ -6,8 +6,21 @@ public class Film {
 	private MovieGenre movieGenre;
 	private int duration;
 	private String director;
-	private String releaseYear;
+	private int releaseYear;
 	
+	public Film() {
+		
+	}
+	public Film(int id, String name, MovieGenre movieGenre, int duration, String director, int releaseYear) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.movieGenre = movieGenre;
+		this.duration = duration;
+		this.director = director;
+		this.releaseYear = releaseYear;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -38,10 +51,10 @@ public class Film {
 	public void setDirector(String director) {
 		this.director = director;
 	}
-	public String getReleaseYear() {
+	public int getReleaseYear() {
 		return releaseYear;
 	}
-	public void setReleaseYear(String releaseYear) {
+	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 }
