@@ -1,0 +1,15 @@
+ - Definir o tema da trabalho referente a avaliação da A2.
+ - Nome dos integrantes (dois).
+ - Implementar o Login (com hash a senha);
+ - Implementar a Tela de Menu (com o link das possiveis telas)
+ - Implementar o Crud de Usuários no modelo novo:
+     - Tela de Consulta e tela de cadastro/edição: 
+     - Consultar e Remover (na mesma tela).
+     - Incluir e Editar (redirecionar para outra tela).
+     - A tela de edição deve possuir um botao para retornar a tela anterior.
+
+* Aplicar uma interface de acordo com o tema. (dica use bootstrap).
+
+* Adicionar o projeto no Git com os integrantes e descrição do tema do trabalho.
+
+* Enviar no educa o .zip do desse trabalho.

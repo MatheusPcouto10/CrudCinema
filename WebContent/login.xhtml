@@ -13,18 +13,16 @@
 		<h:panelGrid columns="2">
 
 			<h:outputLabel value="Login: " />
-			<h:inputText value="#{loginController.user.login}" />
+			<h:inputText value="#{loginController.employee.email}" />
 
 			<h:outputLabel value="Senha: " />
-			<h:inputText value="#{loginController.user.senha}" />
+			<h:inputText value="#{loginController.employee.password}" />
 
-			<h:commandButton value="Entrar" action="#{loginController.entrar}" />
-			<h:commandButton value="Limpar" action="#{loginController.limpar}" />
+			<h:commandButton value="Entrar" action="#{loginController.login}" />
+			<h:commandButton value="Limpar" action="#{loginController.clean}" />
 
 		</h:panelGrid>
 	</h:form>
-
-
 
 </h:body>
 </html>
