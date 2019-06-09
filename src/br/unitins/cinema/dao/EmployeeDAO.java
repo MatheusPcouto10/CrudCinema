@@ -63,7 +63,7 @@ public class EmployeeDAO extends DAO<Employee>{
 			stat =	getConnection().prepareStatement("INSERT INTO employee ( "
 										+ " name, "
 										+ " email, "
-										+ " password "
+										+ " password ) "
 										+ "VALUES ( "
 										+ " ?, "
 										+ " ?, "
@@ -179,7 +179,7 @@ public class EmployeeDAO extends DAO<Employee>{
 				employee = new Employee();
 				employee.setId(rs.getInt("id"));
 				employee.setName(rs.getString("nome"));
-				employee.setEmail(rs.getString("login"));
+				employee.setEmail(rs.getString("email"));
 				employee.setPassword(rs.getString("senha"));
 			}
 		} catch (SQLException e) {
@@ -214,7 +214,7 @@ public class EmployeeDAO extends DAO<Employee>{
 				Employee employee = new Employee();
 				employee.setId(rs.getInt("id"));
 				employee.setName(rs.getString("nome"));
-				employee.setEmail(rs.getString("login"));
+				employee.setEmail(rs.getString("email"));
 				employee.setPassword(rs.getString("senha"));
 
 				listEmployee.add(employee);
