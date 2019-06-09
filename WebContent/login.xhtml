@@ -17,11 +17,14 @@
 
 			<h:outputLabel value="Password: " />
 			<h:inputSecret value="#{loginController.client.password}" />
-
-			<h:commandButton value="Entrar" action="#{loginController.login}" />
-			<h:commandButton value="Limpar" action="#{loginController.clean}" />
-
 		</h:panelGrid>
+		
+		<h:panelGrid columns="3">
+			<h:commandButton value="Sign in" action="#{loginController.login}" />
+			<h:commandButton value="Limpar" action="#{loginController.clean}" />
+			<h:commandButton value="Sign up" action="#{loginController.signup}" />
+		</h:panelGrid>
+		
 	</h:form>
 
 </h:body>

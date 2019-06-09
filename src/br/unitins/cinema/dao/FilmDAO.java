@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.cinema.application.Util;
+import br.unitins.cinema.model.Client;
 import br.unitins.cinema.model.Film;
 import br.unitins.cinema.model.MovieGenre;
 
@@ -212,4 +213,51 @@ public class FilmDAO extends DAO<Film>  {
 		}
 		return listFilm;
 	}
+	
+	
+	public List<Film> findByName(String name) {
+		// verificando se tem uma conexao valida
+		if (getConnection() == null) {
+			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
+			return null;
+		}
+		
+		List<Film> listFilm = new ArrayList<Film>();
+		
+		PreparedStatement stat = null;
+	
+		try {
+			stat = getConnection().prepareStatement("SELECT * FROM film WHERE name ILIKE ?");
+			stat.setString(1, (name == null? "%" : "%"+name+"%"));
+			ResultSet rs = stat.executeQuery();
+			
+			while(rs.next()) {
+				Film film = new Film();
+				
+				film.setId(rs.getInt("id"));
+				film.setName(rs.getString("name"));
+				film.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				film.setDuration(rs.getInt("duration"));
+				film.setDirector(rs.getString("director"));
+				film.setReleaseYear(rs.getInt("release_year"));
+				
+				listFilm.add(film);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Util.addMessageError("Falha ao consultar o Banco de Dados.");
+			listFilm = null;
+		} finally {
+			try {
+				stat.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listFilm;
+
+	}
+	
+	
+	
 }

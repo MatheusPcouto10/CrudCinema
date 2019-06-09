@@ -64,52 +64,10 @@
 				</h:commandButton>
 
 			</h:panelGrid>
-
-			<h:dataTable value="#{clientController.listClient}" var="obj">
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					<h:outputLabel value="#{obj.id}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Name</f:facet>
-					<h:commandLink value="#{obj.name}"
-						actionListener="#{clientController.edit(obj.id)}">
-						<f:ajax execute="@this" render="@form" />
-					</h:commandLink>
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Email</f:facet>
-					<h:commandLink value="#{obj.email}"
-						actionListener="#{clientController.edit(obj.id)}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Password</f:facet>
-					<h:outputLabel value="##########" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">CPF</f:facet>
-					<h:commandLink value="#{obj.email}"
-						actionListener="#{clientController.edit(obj.id)}" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Birth Date</f:facet>
-					<h:outputLabel value="#{obj.birthDate}">
-						<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
-					</h:outputLabel>
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">Telephone</f:facet>
-					<h:commandLink value="#{obj.telephone}"
-						actionListener="#{clientController.edit(obj.id)}" />
-				</h:column>
-
-			</h:dataTable>
+			
+			<h:panelGrid columns='1'>
+				<h:commandButton value="Sign in" action="#{menuController.login}" />
+			</h:panelGrid>
 
 		</h:form>
 

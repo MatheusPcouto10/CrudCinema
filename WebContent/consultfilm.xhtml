@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:head>
+	<title>Film Survey</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+
+	<center>
+		<h1>Film Survey</h1>
+
+		<h:messages style="color:red" />
+		<h:form>
+			<h:panelGrid id="panelForm" columns="3">
+
+				<h:outputLabel value="Name: " />
+				<h:inputText value="#{consultFilmController.name}" />
+
+				<h:commandButton value="Search"
+					actionListener="#{consultFilmController.search}">
+					<f:ajax execute="panelForm" render="@all" />
+				</h:commandButton>
+
+			</h:panelGrid>
+
+
+			<h:dataTable value="#{consultFilmController.listFilm}" var="obj">
+				<h:column>
+					<f:facet name="header">Id</f:facet>
+					<h:outputLabel value="#{obj.id}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:commandLink value="#{obj.name}"
+						actionListener="#{consultFilmController.edit(obj.id)}">
+						<f:ajax execute="@this" render="@form" />
+					</h:commandLink>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Movie Genre</f:facet>
+					<h:outputLabel value="#{obj.movieGenre.label}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Duration</f:facet>
+					<h:commandLink value="#{obj.duration}"
+						actionListener="#{consultFilmController.edit(obj.id)}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Director</f:facet>
+					<h:commandLink value="#{obj.director}"
+						actionListener="#{consultFilmController.edit(obj.id)}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Release Year</f:facet>
+					<h:commandLink value="#{obj.releaseYear}"
+						actionListener="#{consultFilmController.edit(obj.id)}" />
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+
+	</center>
+</h:body>
+</html>

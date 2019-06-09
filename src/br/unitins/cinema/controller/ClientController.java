@@ -82,7 +82,6 @@ public class ClientController implements Serializable {
 		if (client == null) {
 			client = new Client();
 		}
-		
 		return client;
 	}
 	public void setUsuario(Client client) {

@@ -12,7 +12,6 @@ public class Client {
 	private String telephone;
 
 	public Client() {
-
 	}
 
 	public Client(int id, String name, String email, String password, String cpf, LocalDate birthDate,

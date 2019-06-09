@@ -3,16 +3,16 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
-	<title>Crud Cinema</title>
+	<title>Menu Employee</title>
 </h:head>
 <h:body>
 	<center>
-		<h1>Menu Client</h1>
-		<h2>Seja bem-vindo, #{menuController.clientLog.name}!!!</h2>
+		<h1>Menu Employee</h1>
 		<h:messages style="color:red" />
 		<h:form>
 			<h:panelGrid columns="3">
-				<h:commandButton value="Go Back" action="#{menuController.login}" />
+				<h:commandButton value="Client Survey" action="#{menuEmployeeController.clientSurvey}" />
+				<h:commandButton value="Film Survey" action="#{menuEmployeeController.filmSurvey}" />
 			</h:panelGrid>
 		</h:form>
 	</center>

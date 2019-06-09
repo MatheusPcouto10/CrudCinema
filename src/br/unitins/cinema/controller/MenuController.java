@@ -13,13 +13,10 @@ import br.unitins.cinema.model.Client;
 @ViewScoped
 public class MenuController implements Serializable {
 
+	Client clientLog = null;
 	private static final long serialVersionUID = 5087071012447028790L;
 	
-	//Employee employeeLog = null;
-	Client clientLog = null;
-	
 	public MenuController() {
-		//employeeLog = (Employee) Session.getInstance().getAttribute("employeeLog");
 		clientLog = (Client) Session.getInstance().getAttribute("ClientLog");
 	}
 	
@@ -29,13 +26,6 @@ public class MenuController implements Serializable {
 	public void setClientLog(Client clientLog) {
 		this.clientLog = clientLog;
 	}
-//	public Employee getEmployeeLog() {
-//		return employeeLog;
-//	}
-//
-//	public void setEmployeeLog(Employee employeeLog) {
-//		this.employeeLog = employeeLog;
-//	}
 	public void client() {
 		Util.redirect("client.xhtml");
 	}
