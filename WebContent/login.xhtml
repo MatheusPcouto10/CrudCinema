@@ -15,7 +15,7 @@
 <h:body>
 	<center>
 		<h:form>
-			<h1 class="titulo">Acesso</h1>
+			<h1 class="titulo">Login</h1>
 
 			<h:messages style="color:red" />
 
@@ -24,19 +24,19 @@
 				<h:outputLabel class="sr-only" value="Email: " />
 				<h:inputText class="form-control"
 					value="#{loginController.client.email}"
-					pt:placeholder="Digite seu Email" />
+					pt:placeholder="Insert your email" />
 
 				<h:outputLabel class="sr-only" value="Password: " />
 				<h:inputSecret class="form-control"
 					value="#{loginController.client.password}"
-					pt:placeholder="Digite sua Senha" />
+					pt:placeholder="Insert your password" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="3">
 				<h:commandButton class="bottom" type="submit" value="Sign in"
 					action="#{loginController.login}" />
 
-				<h:commandButton class="bottomLimp" type="submit" value="Limpar"
+				<h:commandButton class="bottomLimp" type="submit" value="Clean"
 					action="#{loginController.clean}" />
 
 				<h:commandButton class="bottom" type="submit" value="Sign up"

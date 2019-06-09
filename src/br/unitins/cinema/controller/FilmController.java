@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -20,6 +22,11 @@ public class FilmController implements Serializable{
 	private Film film;
 	
 	private List<Film> listFilm = null;
+	
+	public FilmController() {
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		film = (Film) flash.get("filmFlash");
+	}
 	
 	public List<Film> getListFilm(){
 		if (listFilm == null) {

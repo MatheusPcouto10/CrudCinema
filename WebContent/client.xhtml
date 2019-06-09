@@ -41,7 +41,7 @@
 
 			<h:panelGrid columns="4">
 				<h:commandButton value="Add"
-					disabled="#{clientController.client.id != null}"
+					disabled="#{clientController.client.name != null}"
 					actionListener="#{clientController.create}">
 					<f:ajax execute="panelForm" render="@all" />
 				</h:commandButton>

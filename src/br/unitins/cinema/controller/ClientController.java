@@ -39,7 +39,7 @@ public class ClientController implements Serializable {
 	
 	public void edit(int id) {
 		ClientDAO dao = new ClientDAO();
-		setUsuario(dao.findById(id));
+		setClient(dao.findById(id));
 	}
 	public void create() {
 		// encriptando a senha do usuario
@@ -84,7 +84,7 @@ public class ClientController implements Serializable {
 		}
 		return client;
 	}
-	public void setUsuario(Client client) {
+	public void setClient(Client client) {
 		this.client = client;
 	}
 }
