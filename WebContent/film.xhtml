@@ -1,60 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-	<title>Movie Register</title>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
+	
+	<title>Movie Register</title>
 </h:head>
 
 <h:body>
 	<center>
-		<h1>Movie Register</h1>
+	<h:form>
+		<h1 class="titulo">Movie Register</h1>
 
 		<h:messages style="color:red" />
-		<h:form>
+		
 			<h:panelGrid columns="2">
 
-				<h:outputLabel value="Name: " />
-				<h:inputText value="#{filmController.film.name}" />
+				<h:outputLabel class="textCrud"  value="Name: " />
+				<h:inputText class="form-control" value="#{filmController.film.name}" />
 
-				<h:outputLabel value="Movie Genre: " />
-				<h:selectOneMenu value="#{filmController.film.movieGenre}">
+				<h:outputLabel class="textCrud" value="Movie Genre: " />
+				<h:selectOneMenu class="selectGenre textCrud" value="#{filmController.film.movieGenre}">
 					<f:selectItem itemLabel="Choose ..." />
 					<f:selectItems value="#{filmController.listMovieGenre}"
 						var="movieGenre" itemLabel="#{movieGenre.label}"
 						itemValue="#{movieGenre}" />
 				</h:selectOneMenu>
 
-				<h:outputLabel value="Duration: " />
-				<h:inputText value="#{filmController.film.duration}" />
+				<h:outputLabel class="textCrud" value="Duration: " />
+				<h:inputText class="form-control" value="#{filmController.film.duration}" />
 
-				<h:outputLabel value="Director: " />
-				<h:inputText value="#{filmController.film.director}" />
+				<h:outputLabel class="textCrud" value="Director: " />
+				<h:inputText class="form-control" value="#{filmController.film.director}" />
 
-				<h:outputLabel value="Release Year: " />
-				<h:inputText value="#{filmController.film.releaseYear}" />
+				<h:outputLabel class="textCrud" value="Release Year: " />
+				<h:inputText class="form-control" value="#{filmController.film.releaseYear}" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="4">
-				<h:commandButton value="Add"
+				<h:commandButton class="bottom" type="submit" value="Add"
 					disabled="#{filmController.film.id != null}"
 					actionListener="#{filmController.create}" />
 
-				<h:commandButton value="Update"
+				<h:commandButton class="bottom" type="submit" value="Update"
 					disabled="#{filmController.film.id == null}"
 					actionListener="#{filmController.update}" />
 
-				<h:commandButton value="Delete"
+				<h:commandButton class="bottomLimp" type="submit"  value="Delete"
 					disabled="#{filmController.film.id == null}"
 					actionListener="#{filmController.delete}" />
 
-				<h:commandButton value="Clean"
+				<h:commandButton class="bottomLimp" type="submit" value="Clean"
 					actionListener="#{filmController.clean}" />
 
 			</h:panelGrid>
 
-			<h:dataTable value="#{filmController.listFilm}" var="obj">
+			<h:dataTable class="table table-striped table-bordered textCrud" value="#{filmController.listFilm}" var="obj">
 				<h:column>
 					<f:facet name="header">Id</f:facet>
 					<h:outputLabel value="#{obj.id}" />

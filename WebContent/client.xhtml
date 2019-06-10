@@ -2,71 +2,90 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-	<title>Client Register</title>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
+
+	<title>Client Register</title>
+
 </h:head>
 <h:body>
 
 	<center>
-		<h1>Client Register</h1>
-
-		<h:messages style="color:red" />
 		<h:form>
+			<h1 class="titulo">Client Register</h1>
+
+			<h:messages style="color:red" />
+
 			<h:panelGrid id="panelForm" columns="2">
 
-				<h:outputLabel value="Name: " />
-				<h:inputText value="#{clientController.client.name}" />
+				<h:outputLabel class="textCrud" value="Name: " />
+				<h:inputText class="form-control"
+					value="#{clientController.client.name}"
+					pt:placeholder="Insert your name" />
 
-				<h:outputLabel value="Email: " />
-				<h:inputText value="#{clientController.client.email}" />
+				<h:outputLabel class="textCrud" value="Email: " />
+				<h:inputText class="form-control"
+					value="#{clientController.client.email}"
+					pt:placeholder="Insert your email" />
 
-				<h:outputLabel value="Password: " />
-				<h:inputSecret value="#{clientController.client.password}" />
+				<h:outputLabel class="textCrud" value="Password: " />
+				<h:inputSecret class="form-control"
+					value="#{clientController.client.password}"
+					pt:placeholder="Insert your password" />
 
-				<h:outputLabel value="CPF: " />
-				<h:inputText value="#{clientController.client.cpf}" />
+				<h:outputLabel class="textCrud" value="CPF:" />
+				<h:inputText class="form-control"
+					value="#{clientController.client.cpf}"
+					pt:placeholder="Insert your CPF" />
 
-				<h:outputLabel value="Birth Date: " />
-				<input type="date" jsf:value="#{clientController.client.birthDate}"
+				<h:outputLabel class="textCrud" value="Birth Date: " />
+				<input class="dateTimePicker" type="date" jsf:value="#{clientController.client.birthDate}"
 					pattern="yyyy-MM-dd">
 				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 				</input>
 
-				<h:outputLabel value="Telephone: " />
-				<h:inputText value="#{clientController.client.telephone}" />
+				<h:outputLabel class="textCrud" value="Telephone: " />
+				<h:inputText class="form-control"
+					value="#{clientController.client.telephone}"
+					pt:placeholder="Insert your telephone" />
 
 			</h:panelGrid>
 
 			<h:panelGrid columns="4">
-				<h:commandButton value="Add"
+				<h:commandButton class="bottom" type="submit" value="Add"
 					disabled="#{clientController.client.name != null}"
 					actionListener="#{clientController.create}">
 					<f:ajax execute="panelForm" render="@all" />
 				</h:commandButton>
 
-				<h:commandButton value="Update"
+				<h:commandButton class="bottom" type="submit" value="Update"
 					disabled="#{clientController.client.id == null}"
 					actionListener="#{clientController.update}">
 					<f:ajax execute="panelForm" render="@all" />
 				</h:commandButton>
 
-				<h:commandButton value="Delete"
+				<h:commandButton class="bottomLimp" type="submit" value="Delete"
 					disabled="#{clientController.client.id == null}"
 					actionListener="#{clientController.delete}">
 					<f:ajax execute="panelForm" render="@all" />
 				</h:commandButton>
 
-				<h:commandButton value="Clean"
+				<h:commandButton class="bottomLimp" type="submit" value="Clean"
 					actionListener="#{clientController.clean}">
 					<f:ajax execute="@this" render="@all" />
 				</h:commandButton>
 
 			</h:panelGrid>
-			
+
 			<h:panelGrid columns='1'>
-				<h:commandButton value="Sign in" action="#{menuController.login}" />
+				<h:commandButton class="bottomSign" type="submit" value="Sign in"
+					action="#{menuController.login}" />
 			</h:panelGrid>
 
 		</h:form>

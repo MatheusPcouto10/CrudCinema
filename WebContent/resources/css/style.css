@@ -21,7 +21,41 @@ h1 {
 	background: url(https://img.icons8.com/metro/40/000000/clapperboard.png) no-repeat;
 }
 
+.textCrud{
+	font-family: 'Marcellus SC', serif;
+	font-size: 18px;
+}
 
+.selectGenre{
+  margin-top: 10px;
+  display: block; 
+  width: 100%;
+  height: 34px;
+  padding: 8px 22px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #343434;
+  border-radius: 4px;
+}
+
+.dateTimePicker{
+  margin-top: 10px;
+  display: block; 
+  width: 100%;
+  height: 34px;
+  padding: 8px 22px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #343434;
+  border-radius: 4px;
+	
+}
 
 .bottom {
 	float: right;
@@ -40,6 +74,26 @@ h1 {
 .bottom:hover {
 	color: #ffffff;
 	background-color: #343434;
+}
+
+.bottomSearch{
+	float: left;
+	border-radius: 6px;
+	padding: 3px 16px;
+	margin: 20px 0 0 100px;
+	font-family: Arial;
+	font-size: 18px;
+	border: 2px solid #2d5959;
+	color: #2d5959;
+	cursor: pointer;
+	margin: 15px 10px 0 0;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+.bottomSearch:hover {
+	color: #ffffff;
+	background-color: #2d5959;
+	border: 2px solid #2d5959;
 }
 
 .bottomLimp {
@@ -61,3 +115,23 @@ h1 {
 	background-color: #fb180d;
 	border: 2px solid #fb180d;
 }
+
+.bottomSign {
+	float: right;
+	border-radius: 6px;
+	padding: 3px 15px;
+	margin: 25px 0 0;
+	font-family: Arial;
+	font-size: 18px;
+	border: 2px solid #004080;
+	color: #004080;
+	cursor: pointer;
+	margin: 15px 10px 0 0;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+.bottomSign:hover {
+	color: #ffffff;
+	background-color: #004080;
+	border: 2px solid #004080;
+}
+
