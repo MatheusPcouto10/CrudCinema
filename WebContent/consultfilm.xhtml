@@ -41,10 +41,7 @@
 
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:commandLink value="#{obj.name}"
-						actionListener="#{consultFilmController.edit(obj.id)}">
-						<f:ajax execute="@this" render="@form" />
-					</h:commandLink>
+					<h:outputLabel value="#{obj.name}" />
 				</h:column>
 
 				<h:column>
@@ -54,22 +51,34 @@
 
 				<h:column>
 					<f:facet name="header">Duration</f:facet>
-					<h:commandLink value="#{obj.duration}"
-						actionListener="#{consultFilmController.edit(obj.id)}" />
+					<h:outputLabel value="#{obj.duration}"/>
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Director</f:facet>
-					<h:commandLink value="#{obj.director}"
-						actionListener="#{consultFilmController.edit(obj.id)}" />
+					<h:outputLabel value="#{obj.director}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Release Year</f:facet>
-					<h:commandLink value="#{obj.releaseYear}"
+					<h:outputLabel value="#{obj.releaseYear}" />
+				</h:column>
+
+				<h:column>
+					<h:commandButton class="bottom" type="submit" value="Update"
 						actionListener="#{consultFilmController.edit(obj.id)}" />
 				</h:column>
+
+				<h:column>
+					<h:commandButton class="bottomLimp" type="submit" value="Delete"
+						actionListener="#{filmController.delete(obj.id)}" />
+				</h:column>
+
 			</h:dataTable>
+
+			<h:commandButton class="bottomSign" value="Add Film"
+				actionListener="#{consultFilmController.redirectFilm}">
+			</h:commandButton>
 
 		</h:form>
 

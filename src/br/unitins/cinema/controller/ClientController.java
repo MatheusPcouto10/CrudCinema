@@ -65,9 +65,9 @@ public class ClientController implements Serializable {
 		}
 		dao.closeConnection();
 	}
-	public void delete() {
+	public void delete(int id) {
 		ClientDAO dao = new ClientDAO();
-		if (dao.delete(getClient().getId())) {
+		if (dao.delete(id)) {
 			clean();
 			// para atualizar o data table
 			listClient = null;

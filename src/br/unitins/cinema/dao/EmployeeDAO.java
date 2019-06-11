@@ -63,11 +63,12 @@ public class EmployeeDAO extends DAO<Employee>{
 			stat =	getConnection().prepareStatement("INSERT INTO employee ( "
 										+ " name, "
 										+ " email, "
-										+ " password "
+										+ " password ) "
 										+ "VALUES ( "
 										+ " ?, "
 										+ " ?, "
 										+ " ? ) ");
+			
 			stat.setString(1, obj.getName());
 			stat.setString(2, obj.getEmail());
 			stat.setString(3, obj.getPassword());			

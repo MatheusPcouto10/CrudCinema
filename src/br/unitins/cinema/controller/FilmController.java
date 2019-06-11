@@ -66,9 +66,9 @@ public class FilmController implements Serializable{
 		dao.closeConnection();
 	}
 	
-	public void delete() {
+	public void delete(int id) {
 		FilmDAO dao = new FilmDAO();
-		if (dao.delete(getFilm().getId())) {
+		if (dao.delete(id)){
 			clean();
 			// para atualizar o data table
 			listFilm = null;

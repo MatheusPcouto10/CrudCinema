@@ -56,5 +56,9 @@ public class ConsultClientController  implements Serializable {
 		this.name = name;
 	}
 	
+	public void redirectClientRegister() {
+		Util.redirect("client.xhtml");
+	}
+	
 }
 

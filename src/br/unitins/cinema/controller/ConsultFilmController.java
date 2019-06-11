@@ -55,4 +55,8 @@ public class ConsultFilmController  implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void redirectFilm() {
+		Util.redirect("film.xhtml");
+	}
 }

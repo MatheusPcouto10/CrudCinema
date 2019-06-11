@@ -70,12 +70,6 @@
 					<f:ajax execute="panelForm" render="@all" />
 				</h:commandButton>
 
-				<h:commandButton class="bottomLimp" type="submit" value="Delete"
-					disabled="#{clientController.client.id == null}"
-					actionListener="#{clientController.delete}">
-					<f:ajax execute="panelForm" render="@all" />
-				</h:commandButton>
-
 				<h:commandButton class="bottomLimp" type="submit" value="Clean"
 					actionListener="#{clientController.clean}">
 					<f:ajax execute="@this" render="@all" />

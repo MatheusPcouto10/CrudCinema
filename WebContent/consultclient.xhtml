@@ -42,16 +42,12 @@
 
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:commandLink value="#{obj.name}"
-						actionListener="#{consultClientController.edit(obj.id)}">
-						<f:ajax execute="@this" render="@form" />
-					</h:commandLink>
+					<h:outputLabel value="#{obj.name}"/>
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Email</f:facet>
-					<h:commandLink value="#{obj.email}"
-						actionListener="#{consultClientController.editar(obj.id)}" />
+					<h:outputLabel value="#{obj.email}" />
 				</h:column>
 
 				<h:column>
@@ -61,8 +57,7 @@
 
 				<h:column>
 					<f:facet name="header">CPF</f:facet>
-					<h:commandLink value="#{obj.cpf}"
-						actionListener="#{consultClientController.edit(obj.id)}" />
+					<h:outputLabel value="#{obj.cpf}" />
 				</h:column>
 
 				<h:column>
@@ -74,10 +69,24 @@
 
 				<h:column>
 					<f:facet name="header">Telephone</f:facet>
-					<h:commandLink value="#{obj.telephone}"
+					<h:outputLabel value="#{obj.telephone}" />
+				</h:column>
+
+				<h:column>
+					<h:commandButton class="bottom" type="submit" value="Update"
 						actionListener="#{consultClientController.edit(obj.id)}" />
 				</h:column>
+
+				<h:column>
+					<h:commandButton class="bottomLimp" type="submit" value="Delete"
+						actionListener="#{clientController.delete(obj.id)}" />
+				</h:column>
+
 			</h:dataTable>
+
+			<h:commandButton class="bottomSign" value="Add Client"
+				actionListener="#{consultClientController.redirectClientRegister}">
+			</h:commandButton>
 
 		</h:form>
 

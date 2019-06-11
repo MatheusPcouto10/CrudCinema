@@ -46,16 +46,12 @@
 
 			<h:panelGrid columns="4">
 				<h:commandButton class="bottom" type="submit" value="Add"
-					disabled="#{filmController.film.id != null}"
+					disabled="#{filmController.film.name != null}"
 					actionListener="#{filmController.create}" />
 
 				<h:commandButton class="bottom" type="submit" value="Update"
 					disabled="#{filmController.film.id == null}"
 					actionListener="#{filmController.update}" />
-
-				<h:commandButton class="bottomLimp" type="submit"  value="Delete"
-					disabled="#{filmController.film.id == null}"
-					actionListener="#{filmController.delete}" />
 
 				<h:commandButton class="bottomLimp" type="submit" value="Clean"
 					actionListener="#{filmController.clean}" />
@@ -70,8 +66,7 @@
 
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:commandLink value="#{obj.name}"
-						actionListener="#{filmController.edit(obj.id)}" />
+					<h:outputLabel value="#{obj.name}"/>
 				</h:column>
 
 				<h:column>
@@ -81,20 +76,17 @@
 
 				<h:column>
 					<f:facet name="header">Duration</f:facet>
-					<h:commandLink value="#{obj.duration}"
-						actionListener="#{filmController.edit(obj.id)}" />
+					<h:outputLabel value="#{obj.duration}"/>
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Director</f:facet>
-					<h:commandLink value="#{obj.director}"
-						actionListener="#{filmController.edit(obj.id)}" />
+					<h:outputLabel value="#{obj.director}"/>
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Release Year</f:facet>
-					<h:commandLink value="#{obj.releaseYear}"
-						actionListener="#{filmController.edit(obj.id)}" />
+					<h:outputLabel value="#{obj.releaseYear}"/>
 				</h:column>
 			</h:dataTable>
 
