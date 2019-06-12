@@ -31,7 +31,7 @@ public class LoginController {
 			// login valido
 			Util.redirect("menu.xhtml");
 		} else 
-			Util.addMessageError("Cliente ou senha inválida.");
+			Util.addMessageError("Cliente ou senha invalida.");
 		
 	}
 	

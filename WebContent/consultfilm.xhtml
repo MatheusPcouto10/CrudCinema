@@ -7,20 +7,20 @@
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="style.css" />
-	<title>Film Survey</title>
+	
+	<title>Movie Survey</title>
 </h:head>
 <h:body>
 
 	<center>
 		<h:form>
-			<h1 class="titulo">Film Survey</h1>
+			<h1 class="titulo">Movie Survey</h1>
 			<h:messages style="color:red" />
 
 			<h:panelGrid id="panelForm" columns="3">
 
-				<h:outputLabel class="textCrud" value="Name: " />
+				<h:outputLabel class="textCrud" value="Title: " />
 				<h:inputText class="form-control"
 					value="#{consultFilmController.name}" />
 
@@ -40,7 +40,7 @@
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Name</f:facet>
+					<f:facet name="header">Title</f:facet>
 					<h:outputLabel value="#{obj.name}" />
 				</h:column>
 

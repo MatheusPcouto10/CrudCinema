@@ -9,6 +9,7 @@ import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import br.unitins.cinema.application.Util;
 import br.unitins.cinema.dao.FilmDAO;
 import br.unitins.cinema.model.Film;
 import br.unitins.cinema.model.MovieGenre;
@@ -92,5 +93,9 @@ public class FilmController implements Serializable{
 
 	public void setFilm(Film Film) {
 		this.film = Film;
+	}
+	
+	public void goback() {
+		Util.redirect("consultfilm.xhtml");
 	}
 }

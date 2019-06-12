@@ -43,9 +43,9 @@
 
 				<button type="submit"
 					jsf:disabled="#{filmController.film.name != null}"
-					jsf:actionListener="#{filmController.create}">
+					jsf:actionListener="#{filmController.update}">
 					<f:ajax execute="panelForm" render="@all" />
-					Add
+					Update
 				</button>
 
 				<button type="submit"

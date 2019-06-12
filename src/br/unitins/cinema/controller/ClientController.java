@@ -87,4 +87,8 @@ public class ClientController implements Serializable {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+	
+	public void goback() {
+		Util.redirect("consultclient.xhtml");
+	}
 }

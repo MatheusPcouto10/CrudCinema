@@ -38,9 +38,9 @@
 
 				<button type="submit"
 					jsf:disabled="#{clientController.client.name != null}"
-					jsf:actionListener="#{clientController.create}">
+					jsf:actionListener="#{clientController.update}">
 					<f:ajax execute="panelForm" render="@all" />
-					Add
+					Update
 				</button>
 
 				<button type="submit"
@@ -51,7 +51,7 @@
 				</button>
 
 				<button type="submit" class="button"
-					jsf:action="#{menuController.login}">Sign in</button>
+					jsf:action="#{clientController.goback}">Go Back</button>
 
 			</h:form>
 		</div>

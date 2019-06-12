@@ -45,7 +45,7 @@ public class ConsultClientController  implements Serializable {
 		Client client = dao.findById(id);
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.put("clientFlash", client);
-		Util.redirect("client.xhtml");
+		Util.redirect("clientupdate.xhtml");
 	}
 
 	public String getName() {

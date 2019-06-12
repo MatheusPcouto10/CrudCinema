@@ -45,7 +45,7 @@ public class ConsultFilmController  implements Serializable {
 		Film film = dao.findById(id);
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.put("filmFlash", film);
-		Util.redirect("film.xhtml");
+		Util.redirect("filmupdate.xhtml");
 	}
 
 	public String getName() {

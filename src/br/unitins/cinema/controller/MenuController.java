@@ -30,7 +30,7 @@ public class MenuController implements Serializable {
 		Util.redirect("client.xhtml");
 	}
 	public void film() {
-		Util.redirect("film.xhtml");
+		Util.redirect("consultfilm.xhtml");
 	}
 	public void login() {
 		Util.redirect("login.xhtml");

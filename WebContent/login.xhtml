@@ -2,48 +2,35 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:head>
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="login.css" />
 
 	<title>Sistema de Cadastro</title>
 </h:head>
 <h:body>
-	<center>
-		<h:form>
-			<h1 class="titulo">Login</h1>
+	<div class="login-page">
+		<div class="form">
+			<img src="https://img.icons8.com/metro/40/000000/clapperboard.png" />
+			<h1>LOGIN</h1>
+			<h:messages style="color: red" />
+			<h:form class="login-form">
+				<input type="text" pt:placeholder="email"
+					jsf:value="#{loginController.client.email}" />
+				<input type="password" pt:placeholder="password"
+					jsf:value="#{loginController.client.password}" />
+				<button type="submit" jsf:action="#{loginController.login}">Sign
+					in</button>
 
-			<h:messages style="color:red" />
+				<button type="submit" class="button"
+					jsf:action="#{loginController.signup}">Sign up</button>
 
-			<h:panelGrid columns="2">
-
-				<h:outputLabel class="sr-only" value="Email: " />
-				<h:inputText class="form-control"
-					value="#{loginController.client.email}"
-					pt:placeholder="Insert your email" />
-
-				<h:outputLabel class="sr-only" value="Password: " />
-				<h:inputSecret class="form-control"
-					value="#{loginController.client.password}"
-					pt:placeholder="Insert your password" />
-			</h:panelGrid>
-
-			<h:panelGrid columns="3">
-				<h:commandButton class="bottom" type="submit" value="Sign in"
-					action="#{loginController.login}" />
-
-				<h:commandButton class="bottomLimp" type="submit" value="Clean"
-					action="#{loginController.clean}" />
-
-				<h:commandButton class="bottom" type="submit" value="Sign up"
-					action="#{loginController.signup}" />
-			</h:panelGrid>
-
-		</h:form>
-	</center>
+			</h:form>
+		</div>
+	</div>
 </h:body>
 </html>
