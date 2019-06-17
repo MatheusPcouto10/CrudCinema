@@ -36,7 +36,7 @@
 
 		<h:form class="table">
 			<h:dataTable class="thead-dark table-striped col"
-				value="#{consultClientController.listClient}" var="obj">
+				value="#{consultClientController.listUsuario}" var="obj">
 				<h:column>
 					<f:facet name="header">Id</f:facet>
 					<h:outputLabel value="#{obj.id}" />
@@ -44,12 +44,12 @@
 
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:outputLabel value="#{obj.name}" />
+					<h:outputLabel value="#{obj.nome}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">Email</f:facet>
-					<h:outputLabel value="#{obj.email}" />
+					<h:outputLabel value="#{obj.login}" />
 				</h:column>
 
 				<h:column>
@@ -58,22 +58,12 @@
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">CPF</f:facet>
-					<h:outputLabel value="#{obj.cpf}" />
-				</h:column>
-
-				<h:column>
 					<f:facet name="header">Birth Date</f:facet>
-					<h:outputLabel value="#{obj.birthDate}">
+					<h:outputLabel value="#{obj.dataNascimento}">
 						<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
 					</h:outputLabel>
 				</h:column>
-
-				<h:column>
-					<f:facet name="header">Telephone</f:facet>
-					<h:outputLabel value="#{obj.telephone}" />
-				</h:column>
-
+				
 				<h:column>
 					<h:commandButton class="bottom" type="submit" value="Update"
 						actionListener="#{consultClientController.edit(obj.id)}" />

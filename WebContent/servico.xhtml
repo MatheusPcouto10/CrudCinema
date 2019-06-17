@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<ui:composition template="../template.xhtml">
+		<ui:define name="conteudo">
+			<div class="container">
+				<div class="navbar navbar-inverse">
+					<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro	de Usuário</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-xs-updated">
+						<h:form styleClass="form-horizontal">
+							<h:messages id="messages" style="color:red" globalOnly="false"  />
+		
+							<div class="mb-3">
+								<h:outputLabel value="Descrição:" styleClass="control-label" />
+								<h:inputText id="itNome" value="#{servicoController.servico.descricao}"
+									styleClass="form-control"/>
+								<h:message for="itNome" style="color:red" />
+							</div>
+							<div class="mb-3">
+								<h:outputLabel value="Valor:" styleClass="control-label" />
+								<h:inputText id="itLogin" value="#{servicoController.servico.valor}"
+									styleClass="form-control" >
+									<f:convertNumber  locale="pt_BR" pattern="###0.00"/>
+								</h:inputText>
+								<h:message for="itLogin	" style="color:red" />
+							</div>
+							<hr/>
+							
+							<div class="row">
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Incluir"
+										disabled="#{servicoController.servico.id != null}"
+										actionListener="#{servicoController.incluir}"
+										styleClass="col-md-2 mb-3 btn btn-default form-control">
+										<f:ajax execute="@form" render="@form formDataTable" />
+									</h:commandButton>
+								</div>
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Alterar"
+										disabled="#{servicoController.servico.id == null}"
+										actionListener="#{servicoController.alterar}"
+										styleClass="btn btn-default form-control">
+										<f:ajax execute="@form" render="@form formDataTable" />
+									</h:commandButton>
+								</div>
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Excluir"
+										disabled="#{servicoController.servico.id == null}"
+										actionListener="#{servicoController.excluir}"
+										styleClass="col-md-2 mb-3 btn btn-default form-control">
+										<f:ajax render="@form formDataTable" />
+									</h:commandButton>
+								</div>
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Limpar"
+										actionListener="#{servicoController.limpar}"
+										styleClass="col-md-2 mb-3 btn btn-default form-control" >
+										<f:ajax execute="@this" render="@all" />
+									</h:commandButton>
+								</div>
+							</div>
+		
+							<hr />
+						</h:form>
+		
+						<h:form id="formDataTable" styleClass="form-horizontal">
+							<div class="md-3">
+		
+								<h:dataTable value="#{servicoController.listaServico}" var="obj"
+									styleClass="table table-striped table-hover">
+									<h:column>
+										<f:facet name="header">Id</f:facet>
+										<h:outputLabel value="#{obj.id}" />
+									</h:column>
+		
+									<h:column>
+										<f:facet name="header">Descrição</f:facet>
+										<h:commandLink value="#{obj.descricao}"
+											actionListener="#{servicoController.editar(obj.id)}" />
+									</h:column>
+		
+									<h:column>
+										<f:facet name="header">Valor</f:facet>
+										<h:outputLabel value="#{obj.valor}"
+											actionListener="#{servicoController.editar(obj.id)}" >
+											<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
+										</h:outputLabel>
+									</h:column>
+		
+								</h:dataTable>
+							</div>
+						</h:form>
+		
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

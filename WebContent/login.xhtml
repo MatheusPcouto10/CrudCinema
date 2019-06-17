@@ -20,10 +20,10 @@
 			<h:messages style="color: red" />
 			<h:form class="login-form">
 				<input type="text" pt:placeholder="email"
-					jsf:value="#{loginController.client.email}" />
+					jsf:value="#{loginController.usuario.login}" />
 				<input type="password" pt:placeholder="password"
-					jsf:value="#{loginController.client.password}" />
-				<button type="submit" jsf:action="#{loginController.login}">Sign
+					jsf:value="#{loginController.usuario.senha}" />
+				<button type="submit" jsf:action="#{loginController.entrar}">Sign
 					in</button>
 
 				<button type="submit" class="button"

@@ -1,39 +1,40 @@
 package br.unitins.cinema.dao;
 
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.model.Employee;
+import br.unitins.cinema.model.Perfil;
+import br.unitins.cinema.model.Usuario;
 
+public class UsuarioDAO extends DAO<Usuario> {
 
-public class EmployeeDAO extends DAO<Employee>{
-	
-	public Employee findEmployee(String email, String password) {
+	public Usuario findUsuario(String login, String senha) {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
-		Employee employee = null;
+		Usuario usuario = null;
 		PreparedStatement stat = null;
 		
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM employee WHERE email = ? AND password = ? ");
-			stat.setString(1, email);
-			stat.setString(2, password);
+			stat = getConnection().prepareStatement("SELECT * FROM usuario WHERE login = ? AND senha = ? ");
+			stat.setString(1, login);
+			stat.setString(2, senha);
 			
 			ResultSet rs = stat.executeQuery();
 			if(rs.next()) {
-				employee = new Employee();
-				employee.setId(rs.getInt("id"));
-				employee.setName(rs.getString("name"));
-				employee.setEmail(rs.getString("email"));
-				employee.setPassword(rs.getString("password"));
+				usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setPerfil(Perfil.valueOf(rs.getInt("perfil")));
+				usuario.setDataNascimento(rs.getDate("dataNascimento") == null ? null : (rs.getDate("dataNascimento").toLocalDate()));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,11 +46,11 @@ public class EmployeeDAO extends DAO<Employee>{
 				e.printStackTrace();
 			}
 		}
-		return employee;		
+		return usuario;		
 	}
 
 	@Override
-	public boolean create(Employee obj) {
+	public boolean create(Usuario obj) {
 		boolean resultado = false;
 		
 		// verificando se tem uma conexao valida
@@ -60,19 +61,23 @@ public class EmployeeDAO extends DAO<Employee>{
 		
 		PreparedStatement stat = null;
 		try {
-			stat =	getConnection().prepareStatement("INSERT INTO employee ( "
-										+ " name, "
-										+ " email, "
-										+ " password ) "
+			stat =	getConnection().prepareStatement("INSERT INTO usuario ( "
+										+ " nome, "
+										+ " login, "
+										+ " senha, "
+										+ " perfil,"
+										+ " dataNascimento ) " 
 										+ "VALUES ( "
 										+ " ?, "
 										+ " ?, "
+										+ " ?, "
+										+ " ?,"
 										+ " ? ) ");
-			
-			stat.setString(1, obj.getName());
-			stat.setString(2, obj.getEmail());
-			stat.setString(3, obj.getPassword());			
-			
+			stat.setString(1, obj.getNome());
+			stat.setString(2, obj.getLogin());
+			stat.setString(3, obj.getSenha());			
+			stat.setInt(4, obj.getPerfil().getValue());
+			stat.setDate(5, (obj.getDataNascimento() == null ? null : java.sql.Date.valueOf(obj.getDataNascimento())));
 			stat.execute();
 			Util.addMessageError("Cadastro realizado com sucesso!");
 			resultado = true;
@@ -90,7 +95,7 @@ public class EmployeeDAO extends DAO<Employee>{
 	}
 
 	@Override
-	public boolean update(Employee obj) {
+	public boolean update(Usuario obj) {
 		boolean resultado = false;
 		
 		// verificando se tem uma conexao valida
@@ -101,19 +106,22 @@ public class EmployeeDAO extends DAO<Employee>{
 		
 		PreparedStatement stat = null;
 		try {
-			stat =	getConnection().prepareStatement("UPDATE employee SET "
-												   + "  name = ?, "
-												   + "  email = ?, "
-												   + "  password = ? "											   
+			stat =	getConnection().prepareStatement("UPDATE usuario SET "
+												   + "  nome = ?, "
+												   + "  login = ?, "
+												   + "  senha = ?, "
+												   + "  perfil = ?,  "
+												   + "  dataNascimento = ?  "												   
 												   + "WHERE id = ? ");
-			stat.setString(1, obj.getName());
-			stat.setString(2, obj.getEmail());
-			stat.setString(3, obj.getPassword());
-			
-			stat.setInt(4, obj.getId());
+			stat.setString(1, obj.getNome());
+			stat.setString(2, obj.getLogin());
+			stat.setString(3, obj.getSenha());
+			stat.setInt(4, obj.getPerfil().getValue());
+			stat.setDate(5, (obj.getDataNascimento() == null ? null : java.sql.Date.valueOf(obj.getDataNascimento())));
+			stat.setInt(6, obj.getId());
 			
 			stat.execute();
-			Util.addMessageError("Alteracao realizada com sucesso!");
+			Util.addMessageError("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -141,11 +149,11 @@ public class EmployeeDAO extends DAO<Employee>{
 		
 		PreparedStatement stat = null;
 		try {
-			stat =	getConnection().prepareStatement("DELETE FROM employee WHERE id = ? ");
+			stat =	getConnection().prepareStatement("DELETE FROM usuario WHERE id = ? ");
 			stat.setInt(1, id);
 			
 			stat.execute();
-			Util.addMessageError("Exclusao realizada com sucesso!");
+			Util.addMessageError("Exclusão realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");
@@ -161,27 +169,29 @@ public class EmployeeDAO extends DAO<Employee>{
 	}
 
 	@Override
-	public Employee findById(int id) {
+	public Usuario findById(int id) {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
-		Employee employee = null;
+		Usuario usuario = null;
 		
 		PreparedStatement stat = null;
 		
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM employee WHERE id = ?");
+			stat = getConnection().prepareStatement("SELECT * FROM Usuario WHERE id = ?");
 			stat.setInt(1, id);
 			
 			ResultSet rs = stat.executeQuery();
 			if(rs.next()) {
-				employee = new Employee();
-				employee.setId(rs.getInt("id"));
-				employee.setName(rs.getString("nome"));
-				employee.setEmail(rs.getString("login"));
-				employee.setPassword(rs.getString("senha"));
+				usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setPerfil(Perfil.valueOf(rs.getInt("perfil")));
+				usuario.setDataNascimento(rs.getDate("dataNascimento") == null ? null : (rs.getDate("dataNascimento").toLocalDate()));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -193,37 +203,39 @@ public class EmployeeDAO extends DAO<Employee>{
 				e.printStackTrace();
 			}
 		}
-		return employee;
+		return usuario;
 	}
 
 	@Override
-	public List<Employee> findAll() {
+	public List<Usuario> findAll() {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
 		
-		List<Employee> listEmployee = new ArrayList<Employee>();
+		List<Usuario> listaUsuario = new ArrayList<Usuario>();
 		
 		PreparedStatement stat = null;
 	
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM Employee");
+			stat = getConnection().prepareStatement("SELECT * FROM Usuario");
 			ResultSet rs = stat.executeQuery();
 			while(rs.next()) {
-				Employee employee = new Employee();
-				employee.setId(rs.getInt("id"));
-				employee.setName(rs.getString("nome"));
-				employee.setEmail(rs.getString("login"));
-				employee.setPassword(rs.getString("senha"));
+				Usuario usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setPerfil(Perfil.valueOf(rs.getInt("perfil")));
+				usuario.setDataNascimento(rs.getDate("dataNascimento") == null ? null : (rs.getDate("dataNascimento").toLocalDate()));
 
-				listEmployee.add(employee);
+				listaUsuario.add(usuario);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Util.addMessageError("Falha ao consultar o Banco de Dados.");
-			listEmployee = null;
+			listaUsuario = null;
 		} finally {
 			try {
 				stat.close();
@@ -231,39 +243,41 @@ public class EmployeeDAO extends DAO<Employee>{
 				e.printStackTrace();
 			}
 		}
-		return listEmployee;
+		return listaUsuario;
 
 	}
 	
-	public List<Employee> findByName(String name) {
+	public List<Usuario> findByNome(String nome) {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
 		
-		List<Employee> listEmployee = new ArrayList<Employee>();
+		List<Usuario> listaUsuario = new ArrayList<Usuario>();
 		
 		PreparedStatement stat = null;
 	
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM employee WHERE name ILIKE ?");
-			stat.setString(1, (name == null? "%" : "%"+name+"%"));
+			stat = getConnection().prepareStatement("SELECT * FROM Usuario WHERE nome ILIKE ?");
+			stat.setString(1, (nome == null? "%" : "%"+nome+"%"));
 			ResultSet rs = stat.executeQuery();
 			
 			while(rs.next()) {
-				Employee employee = new Employee();
-				employee.setId(rs.getInt("id"));
-				employee.setName(rs.getString("name"));
-				employee.setEmail(rs.getString("email"));
-				employee.setPassword(rs.getString("password"));
+				Usuario usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				usuario.setPerfil(Perfil.valueOf(rs.getInt("perfil")));
+				usuario.setDataNascimento(rs.getDate("dataNascimento") == null ? null : (rs.getDate("dataNascimento").toLocalDate()));
 
-				listEmployee.add(employee);
+				listaUsuario.add(usuario);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Util.addMessageError("Falha ao consultar o Banco de Dados.");
-			listEmployee = null;
+			listaUsuario = null;
 		} finally {
 			try {
 				stat.close();
@@ -271,8 +285,8 @@ public class EmployeeDAO extends DAO<Employee>{
 				e.printStackTrace();
 			}
 		}
-		return listEmployee;
+		return listaUsuario;
 
 	}
-	
+
 }

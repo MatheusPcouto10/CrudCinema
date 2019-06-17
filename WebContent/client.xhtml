@@ -22,30 +22,39 @@
 			<h:messages style="color: red" />
 			<h:form class="login-form" id="panelForm">
 				<input type="text" pt:placeholder="name"
-					jsf:value="#{clientController.client.name}" />
+					jsf:value="#{usuarioController.usuario.nome}" />
 				<input type="text" pt:placeholder="email"
-					jsf:value="#{clientController.client.email}" />
+					jsf:value="#{usuarioController.usuario.login}" />
 				<input type="password" pt:placeholder="password"
-					jsf:value="#{clientController.client.password}" />
-				<input type="text" pt:placeholder="cpf"
-					jsf:value="#{clientController.client.cpf}" />
-				<input type="date" jsf:value="#{clientController.client.birthDate}"
+					jsf:value="#{usuarioController.usuario.senha}" />
+				<input type="date"
+					jsf:value="#{usuarioController.usuario.dataNascimento}"
 					pattern="yyyy-MM-dd">
-					<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 				</input>
-				<input type="text" pt:placeholder="telephone"
-					jsf:value="#{clientController.client.telephone}" />
+
+				<div class="mb-3">
+					<h:outputLabel value="Perfil de Usuário:"
+						styleClass="control-label" />
+					<h:selectOneListbox value="#{usuarioController.usuario.perfil}"
+						styleClass="form-control" size="1" style="height: 34px;">
+
+						<f:selectItem itemLabel="Selecione ..." />
+						<f:selectItems value="#{usuarioController.listaPerfil}"
+							var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
+					</h:selectOneListbox>
+				</div>
 
 				<button type="submit"
-					jsf:disabled="#{clientController.client.name != null}"
-					jsf:actionListener="#{clientController.create}">
+					jsf:disabled="#{usuarioController.usuario.nome != null}"
+					jsf:actionListener="#{usuarioController.incluir}">
 					<f:ajax execute="panelForm" render="@all" />
 					Add
 				</button>
 
 				<button type="submit"
-					jsf:disabled="#{clientController.client.name != null}"
-					jsf:actionListener="#{clientController.clean}">
+					jsf:disabled="#{usuarioController.usuario.nome != null}"
+					jsf:actionListener="#{usuarioController.limpar}">
 					<f:ajax execute="panelForm" render="@all" />
 					Clean
 				</button>

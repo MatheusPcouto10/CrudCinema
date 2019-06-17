@@ -7,23 +7,23 @@ import javax.inject.Named;
 
 import br.unitins.cinema.application.Session;
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.model.Client;
+import br.unitins.cinema.model.Usuario;
 
 @Named
 @ViewScoped
 public class MenuController implements Serializable {
 
-	Client clientLog = null;
+	Usuario clientLog = null;
 	private static final long serialVersionUID = 5087071012447028790L;
 	
 	public MenuController() {
-		clientLog = (Client) Session.getInstance().getAttribute("ClientLog");
+		clientLog = (Usuario) Session.getInstance().getAttribute("ClientLog");
 	}
 	
-	public Client getClientLog() {
+	public Usuario getUsuarioLog() {
 		return clientLog;
 	}
-	public void setClientLog(Client clientLog) {
+	public void setUsuarioLog(Usuario clientLog) {
 		this.clientLog = clientLog;
 	}
 	public void client() {

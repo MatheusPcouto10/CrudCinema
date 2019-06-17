@@ -10,8 +10,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.dao.ClientDAO;
-import br.unitins.cinema.model.Client;
+import br.unitins.cinema.dao.UsuarioDAO;
+import br.unitins.cinema.model.Usuario;
 
 
 @Named
@@ -22,29 +22,29 @@ public class ConsultClientController  implements Serializable {
 
 	private String name;
 	
-	private List<Client> listClient = null;
+	private List<Usuario> listUsuario = null;
 	
-	public List<Client> getListClient(){
-		if (listClient == null) {
-			ClientDAO dao = new ClientDAO();
-			listClient = dao.findByName(getName());
-			if (listClient == null)
-				listClient = new ArrayList<Client>();
+	public List<Usuario> getListUsuario(){
+		if (listUsuario == null) {
+			UsuarioDAO dao = new UsuarioDAO();
+			listUsuario = dao.findByNome(getName());
+			if (listUsuario == null)
+				listUsuario = new ArrayList<Usuario>();
 			dao.closeConnection();
 		}
 		
-		return listClient;
+		return listUsuario;
 	}
 	
 	public void search() {
-		listClient = null;
+		listUsuario = null;
 	}
 	
 	public void edit(int id) {
-		ClientDAO dao = new ClientDAO();
-		Client client = dao.findById(id);
+		UsuarioDAO dao = new UsuarioDAO();
+		Usuario usuario = dao.findById(id);
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("clientFlash", client);
+		flash.put("clientFlash", usuario);
 		Util.redirect("clientupdate.xhtml");
 	}
 

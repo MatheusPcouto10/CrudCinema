@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="../template.xhtml">
+<ui:define name="conteudo">
+
+	<center>
+		<h1>Venda de Serviço</h1>
+
+		<h:form>
+			<h:messages style="color:red" />
+			<h:panelGrid id="panelForm"  columns="3">
+
+				<h:outputLabel value="Descrição do Serviço: " />
+				<h:inputText value="#{vendaServicoController.descricao}" />
+
+				<h:commandButton value="Pesquisar"
+					actionListener="#{vendaServicoController.pesquisar}" >
+					<f:ajax execute="panelForm" render="@all" />
+				</h:commandButton>	
+				
+			</h:panelGrid>
+
+			
+			<h:dataTable value="#{vendaServicoController.listaServico}" var="obj">
+				<h:column>
+					<f:facet name="header">Descrição</f:facet>
+					<h:outputLabel value="#{obj.descricao}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Valor</f:facet>
+					<h:outputLabel value="#{obj.valor}">
+						<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
+					</h:outputLabel>
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Ação</f:facet>
+					<h:commandButton value="Adicionar Carrinho"
+						actionListener="#{vendaServicoController.adicionar(obj.id)}" >
+						<f:ajax render="@all" execute="@this" />
+					</h:commandButton>
+				</h:column>
+				
+			</h:dataTable>
+			
+		</h:form>
+	</center>
+</ui:define>
+</ui:composition>	
+	
+</html>

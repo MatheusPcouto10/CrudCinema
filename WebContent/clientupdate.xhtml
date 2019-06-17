@@ -5,10 +5,10 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-	<meta charset="utf-8" name="viewport"
+	<meta charset="utf-8" nome="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<h:outputStylesheet library="css" name="login.css" />
+	<h:outputStylesheet library="css" nome="login.css" />
 
 	<title>Client Register</title>
 
@@ -21,37 +21,30 @@
 			<h1>CLIENT REGISTER</h1>
 			<h:messages style="color: red" />
 			<h:form class="login-form" id="panelForm">
-				<input type="text" pt:placeholder="name"
-					jsf:value="#{clientController.client.name}" />
+				<input type="text" pt:placeholder="nome"
+					jsf:value="#{usuarioController.usuario.nome}" />
 				<input type="text" pt:placeholder="email"
-					jsf:value="#{clientController.client.email}" />
+					jsf:value="#{usuarioController.usuario.login}" />
 				<input type="password" pt:placeholder="password"
-					jsf:value="#{clientController.client.password}" />
-				<input type="text" pt:placeholder="cpf"
-					jsf:value="#{clientController.client.cpf}" />
-				<input type="date" jsf:value="#{clientController.client.birthDate}"
+					jsf:value="#{usuarioController.usuario.senha}" />
+				<input type="date" jsf:value="#{usuarioController.usuario.dataNascimento}"
 					pattern="yyyy-MM-dd">
 					<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 				</input>
-				<input type="text" pt:placeholder="telephone"
-					jsf:value="#{clientController.client.telephone}" />
 
 				<button type="submit"
-					jsf:disabled="#{clientController.client.name != null}"
-					jsf:actionListener="#{clientController.update}">
+					jsf:disabled="#{usuarioController.usuario.nome != null}"
+					jsf:actionListener="#{usuarioController.alterar}">
 					<f:ajax execute="panelForm" render="@all" />
 					Update
 				</button>
 
 				<button type="submit"
-					jsf:disabled="#{clientController.client.name != null}"
-					jsf:actionListener="#{clientController.clean}">
+					jsf:disabled="#{usuarioController.usuario.nome != null}"
+					jsf:actionListener="#{usuarioController.limpar}">
 					<f:ajax execute="panelForm" render="@all" />
 					Clean
 				</button>
-
-				<button type="submit" class="button"
-					jsf:action="#{clientController.goback}">Go Back</button>
 
 			</h:form>
 		</div>

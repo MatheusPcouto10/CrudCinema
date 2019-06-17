@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 import br.unitins.cinema.application.Session;
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.model.Employee;
+import br.unitins.cinema.model.Usuario;
 
 @Named
 @ViewScoped
@@ -15,17 +15,17 @@ public class MenuEmployeeController implements Serializable {
 
 	private static final long serialVersionUID = -6966392563687527941L;
 	
-	Employee employeeLog = null;
+	Usuario employeeLog = null;
 
 	
 	public MenuEmployeeController() {
-		employeeLog = (Employee) Session.getInstance().getAttribute("EmployeeLog");
+		employeeLog = (Usuario) Session.getInstance().getAttribute("EmployeeLog");
 	}
 	
-	public Employee getClientLog() {
+	public Usuario getClientLog() {
 		return employeeLog;
 	}
-	public void setClientLog(Employee employeeLog) {
+	public void setClientLog(Usuario employeeLog) {
 		this.employeeLog = employeeLog;
 	}
 	public void clientSurvey() {

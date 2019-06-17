@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.model.Client;
 import br.unitins.cinema.model.Film;
 import br.unitins.cinema.model.MovieGenre;
 
