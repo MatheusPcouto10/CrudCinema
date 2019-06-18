@@ -10,31 +10,31 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.dao.FilmDAO;
-import br.unitins.cinema.model.Film;
+import br.unitins.cinema.dao.MovieDAO;
+import br.unitins.cinema.model.Movie;
 import br.unitins.cinema.model.MovieGenre;
 
 @Named
 @ViewScoped
-public class FilmController implements Serializable{
+public class MovieController implements Serializable{
 	
-	private static final long serialVersionUID = 1404713075505026358L;
+	private static final long serialVersionUID = -6437899273883339954L;
 
-	private Film film;
+	private Movie movie;
 	
-	private List<Film> listFilm = null;
+	private List<Movie> listFilm = null;
 	
-	public FilmController() {
+	public MovieController() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		film = (Film) flash.get("filmFlash");
+		movie = (Movie) flash.get("movieFlash");
 	}
 	
-	public List<Film> getListFilm(){
+	public List<Movie> getListFilm(){
 		if (listFilm == null) {
-			FilmDAO dao = new FilmDAO();
+			MovieDAO dao = new MovieDAO();
 			listFilm = dao.findAll();
 			if (listFilm == null)
-				listFilm = new ArrayList<Film>();
+				listFilm = new ArrayList<Movie>();
 			dao.closeConnection();
 		}
 		
@@ -42,14 +42,14 @@ public class FilmController implements Serializable{
 	}
 	
 	public void edit(int id) {
-		FilmDAO dao = new FilmDAO();
-		setFilm(dao.findById(id));
+		MovieDAO dao = new MovieDAO();
+		setMovie(dao.findById(id));
 	}
 	
 	
 	public void create() {
-		FilmDAO dao = new FilmDAO();
-		if (dao.create(getFilm())) {
+		MovieDAO dao = new MovieDAO();
+		if (dao.create(getMovie())) {
 			clean();
 			// para atualizar o data table
 			listFilm = null;
@@ -58,8 +58,8 @@ public class FilmController implements Serializable{
 	}
 	
 	public void update() {
-		FilmDAO dao = new FilmDAO();
-		if (dao.update(getFilm())) {
+		MovieDAO dao = new MovieDAO();
+		if (dao.update(getMovie())) {
 			clean();
 			// para atualizar o data table
 			listFilm = null;
@@ -68,7 +68,7 @@ public class FilmController implements Serializable{
 	}
 	
 	public void delete(int id) {
-		FilmDAO dao = new FilmDAO();
+		MovieDAO dao = new MovieDAO();
 		if (dao.delete(id)){
 			clean();
 			// para atualizar o data table
@@ -82,17 +82,17 @@ public class FilmController implements Serializable{
 	}
 	
 	public void clean() {
-		film = null;
+		movie = null;
 	}
 	
-	public Film getFilm() {
-		if (film == null)
-			film = new Film();
-		return film;
+	public Movie getMovie() {
+		if (movie == null)
+			movie = new Movie();
+		return movie;
 	}
 
-	public void setFilm(Film Film) {
-		this.film = Film;
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 	
 	public void goback() {

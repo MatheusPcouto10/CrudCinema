@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<ui:composition template="../template.xhtml">
+		<ui:define name="conteudo">
+			<div class="container">
+				<div class="navbar navbar-inverse">
+					<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro	de Usuário</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-xs-updated">
+						<h:form styleClass="form-horizontal">
+							<h:messages id="messages" style="color:red" globalOnly="false"  />
+		
+							<div class="mb-3">
+								<h:outputLabel value="Nome:" styleClass="control-label" />
+								<h:inputText id="itNome" value="#{usuarioController.usuario.nome}"
+									styleClass="form-control">
+									<f:validateLength minimum="2" maximum="10" />
+		
+								</h:inputText>
+								<h:message for="itNome" style="color:red" />
+							</div>
+							<div class="mb-3">
+								<h:outputLabel value="Login:" styleClass="control-label" />
+								<h:inputText id="itLogin" value="#{usuarioController.usuario.login}"
+									styleClass="form-control" />
+								<h:message for="itLogin	" style="color:red" />
+							</div>
+							<div class="mb-3">
+								<h:outputLabel  value="Senha:" styleClass="control-label" />
+								<h:inputSecret id="itSenha" value="#{usuarioController.usuario.senha}"
+									styleClass="form-control" />
+								<h:message for="itSenha" style="color:red" />
+							</div>
+							<div class="mb-3">
+								<h:outputLabel value="Data de Nascimento:" styleClass="control-label" />
+								<input type="date" class="form-control"
+									   jsf:value="#{usuarioController.usuario.dataNascimento}"
+									   pattern="yyyy-MM-dd">
+									   <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+								</input>
+							</div>
+							<div class="mb-3">
+								<h:outputLabel value="Perfil de Usuário:"
+									styleClass="control-label" />
+								<h:selectOneListbox value="#{usuarioController.usuario.perfil}"
+									styleClass="form-control" size="1" style="height: 34px;">
+		
+									<f:selectItem itemLabel="Selecione ..." />
+									<f:selectItems value="#{usuarioController.listaPerfil}"
+										var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
+								</h:selectOneListbox>
+							</div>
+							
+							<hr/>
+							
+							<div class="row">
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Incluir"
+										disabled="#{usuarioController.usuario.id != null}"
+										actionListener="#{usuarioController.incluir}"
+										styleClass="col-md-2 mb-3 btn btn-default form-control">
+										<f:ajax execute="@form" render="@form formDataTable" />
+									</h:commandButton>
+								</div>
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Alterar"
+										disabled="#{usuarioController.usuario.id == null}"
+										actionListener="#{usuarioController.alterar}"
+										styleClass="btn btn-default form-control">
+										<f:ajax execute="@form" render="@form formDataTable" />
+									</h:commandButton>
+								</div>
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Excluir"
+										disabled="#{usuarioController.usuario.id == null}"
+										actionListener="#{usuarioController.excluir}"
+										styleClass="col-md-2 mb-3 btn btn-default form-control">
+										<f:ajax render="@form formDataTable" />
+									</h:commandButton>
+								</div>
+								<div class="col-md-3 mb-3">
+									<h:commandButton value="Limpar"
+										actionListener="#{usuarioController.limpar}"
+										styleClass="col-md-2 mb-3 btn btn-default form-control" >
+										<f:ajax execute="@this" render="@all" />
+									</h:commandButton>
+								</div>
+							</div>
+		
+							<hr />
+						</h:form>
+		
+						<h:form id="formDataTable" styleClass="form-horizontal">
+							<div class="md-3">
+		
+								<h:dataTable value="#{usuarioController.listaUsuario}" var="obj"
+									styleClass="table table-striped table-hover">
+									<h:column>
+										<f:facet name="header">Id</f:facet>
+										<h:outputLabel value="#{obj.id}" />
+									</h:column>
+		
+									<h:column>
+										<f:facet name="header">Nome</f:facet>
+										<h:commandLink value="#{obj.nome}"
+											actionListener="#{usuarioController.editar(obj.id)}" />
+									</h:column>
+		
+									<h:column>
+										<f:facet name="header">Login</f:facet>
+										<h:commandLink value="#{obj.login}"
+											actionListener="#{usuarioController.editar(obj.id)}" />
+									</h:column>
+		
+									<h:column>
+										<f:facet name="header">Senha</f:facet>
+										<h:outputLabel value="##########" />
+									</h:column>
+									
+									<h:column>
+										<f:facet name="header">Data Nascimento</f:facet>
+										<h:outputLabel value="#{obj.dataNascimento}" >
+											<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
+										</h:outputLabel>
+									</h:column>							
+		
+									<h:column>
+										<f:facet name="header">Perfil</f:facet>
+										<h:outputLabel value="#{obj.perfil.label}" />
+									</h:column>
+								</h:dataTable>
+							</div>
+						</h:form>
+		
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

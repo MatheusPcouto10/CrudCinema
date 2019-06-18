@@ -10,39 +10,39 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.dao.FilmDAO;
-import br.unitins.cinema.model.Film;
+import br.unitins.cinema.dao.MovieDAO;
+import br.unitins.cinema.model.Movie;
 
 
 @Named
 @ViewScoped
-public class ConsultFilmController  implements Serializable {
+public class ConsultMovieController  implements Serializable {
 
-	private static final long serialVersionUID = 6806782813108712741L;
+	private static final long serialVersionUID = -4902023210704305794L;
 
 	private String name;
 	
-	private List<Film> listFilm = null;
+	private List<Movie> listMovie = null;
 	
-	public List<Film> getListFilm(){
-		if (listFilm == null) {
-			FilmDAO dao = new FilmDAO();
-			listFilm = dao.findByName(getName());
-			if (listFilm == null)
-				listFilm = new ArrayList<Film>();
+	public List<Movie> getListMovie(){
+		if (listMovie == null) {
+			MovieDAO dao = new MovieDAO();
+			listMovie = dao.findByName(getName());
+			if (listMovie == null)
+				listMovie = new ArrayList<Movie>();
 			dao.closeConnection();
 		}
 		
-		return listFilm;
+		return listMovie;
 	}
 	
 	public void search() {
-		listFilm = null;
+		listMovie = null;
 	}
 	
 	public void edit(int id) {
-		FilmDAO dao = new FilmDAO();
-		Film film = dao.findById(id);
+		MovieDAO dao = new MovieDAO();
+		Movie film = dao.findById(id);
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.put("filmFlash", film);
 		Util.redirect("filmupdate.xhtml");
@@ -56,7 +56,7 @@ public class ConsultFilmController  implements Serializable {
 		this.name = name;
 	}
 	
-	public void redirectFilm() {
+	public void redirectMovie() {
 		Util.redirect("film.xhtml");
 	}
 }

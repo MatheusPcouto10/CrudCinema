@@ -8,26 +8,8 @@ import java.util.InputMismatchException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-//import org.apache.commons.codec.digest.DigestUtils;
-
 public class Util {
 
-	public static void main(String[] args) {
-		// na tela de usuario (crud)
-		// 		usuario.setSenha(Util.encrypt(usuario.getSenha()));
-		
-		// TELA DE LOGIN
-		// 
-		
-		//System.out.println(Util.encryptByApache("silvano"));
-		System.out.println(Util.encrypt("ana999"));
-	}
-	
-//	public static String encryptByApache(String value) {
-//		return DigestUtils.sha256Hex(value);
-//	}
-	
-	
 	public static String encrypt(String value) {
 		try {
 			// Classe usilizada para gerar a criptografia em hash
@@ -54,7 +36,7 @@ public class Util {
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect(url);
 		} catch (IOException e) {
-			addMessageError("Erro ao redirecionar a p�gina.");
+			addMessageError("Erro ao redirecionar a pagina.");
 			e.printStackTrace();
 		}
 	}

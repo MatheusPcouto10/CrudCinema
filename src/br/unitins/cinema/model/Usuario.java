@@ -9,19 +9,19 @@ import javax.validation.constraints.Size;
 public class Usuario {
 	private Integer id;
 	
-	@NotBlank(message="O nome deve ser informado.")
+	//@NotBlank(message="O nome deve ser informado.")
 	private String nome;
 	
-	@Email(message="Email inválido.")
+	//@Email(message="Email invalido.")
 	private String login;
 	
-	@Size(min=6, max=20, message="Tamanho incompativel, valor mínimo: 6 e valor maximo:20.")
+	//@Size(min=6, max=20, message="Tamanho incompativel, valor minimo: 6 e valor maximo:20.")
 	private String senha;
-	private Perfil perfil;
+	
 	private LocalDate dataNascimento;
+	private Perfil perfil;
 
 	public Usuario() {
-
 	}
 
 	public Usuario(Integer id, String nome, String login, String senha, Perfil perfil) {

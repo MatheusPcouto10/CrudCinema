@@ -1425,7 +1425,6 @@ hr {
   overflow: hidden;
   clip: rect(0,0,0,0);
   border: 0;
-
 }
 
 .sr-only-focusable:active,.sr-only-focusable:focus {
@@ -2717,19 +2716,18 @@ th {
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
-  margin-top: 20px;
 }
 
 .table>tbody>tr>td,.table>tbody>tr>th,.table>tfoot>tr>td,.table>tfoot>tr>th,.table>thead>tr>td,.table>thead>tr>th {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
-  border-top: 1px solid #ababab;
+  border-top: 1px solid #ddd;
 }
 
 .table>thead>tr>th {
   vertical-align: bottom;
-  border-bottom: 2px solid #ababab;
+  border-bottom: 2px solid #ddd;
 }
 
 .table>caption+thead>tr:first-child>td,.table>caption+thead>tr:first-child>th,.table>colgroup+thead>tr:first-child>td,.table>colgroup+thead>tr:first-child>th,.table>thead:first-child>tr:first-child>td,.table>thead:first-child>tr:first-child>th {
@@ -2737,11 +2735,11 @@ th {
 }
 
 .table>tbody+tbody {
-  border-top: 2px solid #ababab;
+  border-top: 2px solid #ddd;
 }
 
 .table .table {
-  background-color: #ababab;
+  background-color: #fff;
 }
 
 .table-condensed>tbody>tr>td,.table-condensed>tbody>tr>th,.table-condensed>tfoot>tr>td,.table-condensed>tfoot>tr>th,.table-condensed>thead>tr>td,.table-condensed>thead>tr>th {
@@ -2749,11 +2747,11 @@ th {
 }
 
 .table-bordered {
-  border: 1px solid #ababab;
+  border: 1px solid #ddd;
 }
 
 .table-bordered>tbody>tr>td,.table-bordered>tbody>tr>th,.table-bordered>tfoot>tr>td,.table-bordered>tfoot>tr>th,.table-bordered>thead>tr>td,.table-bordered>thead>tr>th {
-  border: 1px solid #ababab;
+  border: 1px solid #ddd;
 }
 
 .table-bordered>thead>tr>td,.table-bordered>thead>tr>th {
@@ -2924,17 +2922,16 @@ output {
 }
 
 .form-control {
-  margin-top: 10px;
-  display: block; 
+  display: block;
   width: 100%;
   height: 34px;
-  padding: 18px 22px;
+  padding: 6px 12px;
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
   background-image: none;
-  border: 1px solid #343434;
+  border: 1px solid #ccc;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
@@ -3717,7 +3714,7 @@ a.btn.disabled,fieldset[disabled] a.btn {
 }
 
 .btn-group-lg>.btn,.btn-lg {
-  padding: 300px 16px;
+  padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;

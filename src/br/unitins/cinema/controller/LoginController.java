@@ -25,9 +25,9 @@ public class LoginController {
 		if (usuLogado != null) {
 			Session.getInstance().setAttribute("usuarioLogado", usuLogado);
 			// login valido
-			Util.redirect("menu.xhtml");
+			Util.redirect("template.xhtml");
 		} else 
-			Util.addMessageError("Usuário ou senha inválido.");
+			Util.addMessageError("Usuario ou senha invalido.");
 		
 	}
 	
@@ -47,7 +47,7 @@ public class LoginController {
 	}
 	
 	public void signup() {
-		Util.redirect("client.xhtml");
+		Util.redirect("signup.xhtml");
 	}
 
 }

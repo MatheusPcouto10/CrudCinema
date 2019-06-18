@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.cinema.application.Util;
-import br.unitins.cinema.model.Film;
+import br.unitins.cinema.model.Movie;
 import br.unitins.cinema.model.MovieGenre;
 
-public class FilmDAO extends DAO<Film>  {
+public class MovieDAO extends DAO<Movie>  {
 	
 	@Override
-	public boolean create(Film obj) {
+	public boolean create(Movie obj) {
 		boolean result = false;
 		
 		// verificando se tem uma conexao valida
@@ -24,7 +24,7 @@ public class FilmDAO extends DAO<Film>  {
 		
 		PreparedStatement stat = null;
 		try {
-			stat =	getConnection().prepareStatement("INSERT INTO film ( "
+			stat =	getConnection().prepareStatement("INSERT INTO movie ( "
 										+ "  name, "
 										+ "  movie_genre, "
 										+ "  duration, "
@@ -38,9 +38,9 @@ public class FilmDAO extends DAO<Film>  {
 										+ " ? ) ");
 			stat.setString(1, obj.getName());
 			stat.setInt(2, obj.getMovieGenre().getValue());
-			stat.setInt(3, obj.getDuration());
+			stat.setString(3, obj.getDuration());
 			stat.setString(4, obj.getDirector());
-			stat.setInt(5, obj.getReleaseYear());
+			stat.setString(5, obj.getReleaseYear());
 			
 			stat.execute();
 			Util.addMessageError("Cadastro realizado com sucesso!");
@@ -59,7 +59,7 @@ public class FilmDAO extends DAO<Film>  {
 	}
 
 	@Override
-	public boolean update(Film obj) {
+	public boolean update(Movie obj) {
 		boolean result = false;
 		
 		// verificando se tem uma conexao valida
@@ -70,7 +70,7 @@ public class FilmDAO extends DAO<Film>  {
 		
 		PreparedStatement stat = null;
 		try {
-			stat =	getConnection().prepareStatement("UPDATE film SET "
+			stat =	getConnection().prepareStatement("UPDATE movie SET "
 												   + "  name = ?, "
 												   + "  movie_genre = ?, "
 												   + "  duration = ?, "
@@ -79,14 +79,14 @@ public class FilmDAO extends DAO<Film>  {
 												   + "WHERE id = ? ");
 			stat.setString(1, obj.getName());
 			stat.setInt(2, obj.getMovieGenre().getValue());
-			stat.setInt(3, obj.getDuration());
+			stat.setString(3, obj.getDuration());
 			stat.setString(4, obj.getDirector());
-			stat.setInt(5, obj.getReleaseYear());
+			stat.setString(5, obj.getReleaseYear());
 			
 			stat.setInt(6, obj.getId());
 			
 			stat.execute();
-			Util.addMessageError("Alteração realizada com sucesso!");
+			Util.addMessageError("Alteracao realizada com sucesso!");
 			result = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -114,11 +114,11 @@ public class FilmDAO extends DAO<Film>  {
 		
 		PreparedStatement stat = null;
 		try {
-			stat =	getConnection().prepareStatement("DELETE FROM film WHERE id = ? ");
+			stat =	getConnection().prepareStatement("DELETE FROM movie WHERE id = ? ");
 			stat.setInt(1, id);
 			
 			stat.execute();
-			Util.addMessageError("Exclusão realizada com sucesso!");
+			Util.addMessageError("Exclusao realizada com sucesso!");
 			result = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Excluir.");
@@ -134,30 +134,30 @@ public class FilmDAO extends DAO<Film>  {
 	}
 
 	@Override
-	public Film findById(int id) {
+	public Movie findById(int id) {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
-		Film film = null;
+		Movie movie = null;
 		
 		PreparedStatement stat = null;
 		
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM film WHERE id = ?");
+			stat = getConnection().prepareStatement("SELECT * FROM movie WHERE id = ?");
 			stat.setInt(1, id);
 			
 			ResultSet rs = stat.executeQuery();
 			if(rs.next()) {
-				film = new Film();
+				movie = new Movie();
 				
-				film.setId(rs.getInt("id"));
-				film.setName(rs.getString("name"));
-				film.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
-				film.setDuration(rs.getInt("duration"));
-				film.setDirector(rs.getString("director"));
-				film.setReleaseYear(rs.getInt("release_year"));
+				movie.setId(rs.getInt("id"));
+				movie.setName(rs.getString("name"));
+				movie.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				movie.setDuration(rs.getString("duration"));
+				movie.setDirector(rs.getString("director"));
+				movie.setReleaseYear(rs.getString("release_year"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -169,40 +169,40 @@ public class FilmDAO extends DAO<Film>  {
 				e.printStackTrace();
 			}
 		}
-		return film;
+		return movie;
 	}
 
 	@Override
-	public List<Film> findAll() {
+	public List<Movie> findAll() {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
 		
-		List<Film> listFilm = new ArrayList<Film>();
+		List<Movie> listMovie = new ArrayList<Movie>();
 		
 		PreparedStatement stat = null;
 	
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM film");
+			stat = getConnection().prepareStatement("SELECT * FROM movie");
 			ResultSet rs = stat.executeQuery();
 			while(rs.next()) {
-				Film film = new Film();
+				Movie movie = new Movie();
 				
-				film.setId(rs.getInt("id"));
-				film.setName(rs.getString("name"));
-				film.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
-				film.setDuration(rs.getInt("duration"));
-				film.setDirector(rs.getString("director"));
-				film.setReleaseYear(rs.getInt("release_year"));				
+				movie.setId(rs.getInt("id"));
+				movie.setName(rs.getString("name"));
+				movie.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				movie.setDuration(rs.getString("duration"));
+				movie.setDirector(rs.getString("director"));
+				movie.setReleaseYear(rs.getString("release_year"));				
 
-				listFilm.add(film);
+				listMovie.add(movie);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Util.addMessageError("Falha ao consultar o Banco de Dados.");
-			listFilm = null;
+			listMovie = null;
 		} finally {
 			try {
 				stat.close();
@@ -210,42 +210,42 @@ public class FilmDAO extends DAO<Film>  {
 				e.printStackTrace();
 			}
 		}
-		return listFilm;
+		return listMovie;
 	}
 	
 	
-	public List<Film> findByName(String name) {
+	public List<Movie> findByName(String name) {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
 			return null;
 		}
 		
-		List<Film> listFilm = new ArrayList<Film>();
+		List<Movie> listMovie = new ArrayList<Movie>();
 		
 		PreparedStatement stat = null;
 	
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM film WHERE name ILIKE ?");
+			stat = getConnection().prepareStatement("SELECT * FROM movie WHERE name ILIKE ?");
 			stat.setString(1, (name == null? "%" : "%"+name+"%"));
 			ResultSet rs = stat.executeQuery();
 			
 			while(rs.next()) {
-				Film film = new Film();
+				Movie movie = new Movie();
 				
-				film.setId(rs.getInt("id"));
-				film.setName(rs.getString("name"));
-				film.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
-				film.setDuration(rs.getInt("duration"));
-				film.setDirector(rs.getString("director"));
-				film.setReleaseYear(rs.getInt("release_year"));
+				movie.setId(rs.getInt("id"));
+				movie.setName(rs.getString("name"));
+				movie.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				movie.setDuration(rs.getString("duration"));
+				movie.setDirector(rs.getString("director"));
+				movie.setReleaseYear(rs.getString("release_year"));
 				
-				listFilm.add(film);
+				listMovie.add(movie);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Util.addMessageError("Falha ao consultar o Banco de Dados.");
-			listFilm = null;
+			listMovie = null;
 		} finally {
 			try {
 				stat.close();
@@ -253,10 +253,8 @@ public class FilmDAO extends DAO<Film>  {
 				e.printStackTrace();
 			}
 		}
-		return listFilm;
+		return listMovie;
 
 	}
-	
-	
 	
 }

@@ -1,17 +1,17 @@
 package br.unitins.cinema.model;
 
-public class Film {
+public class Movie {
 	private int id;
 	private String name;
 	private MovieGenre movieGenre;
-	private int duration;
+	private String duration;
 	private String director;
-	private int releaseYear;
+	private String releaseYear;
 	
-	public Film() {
+	public Movie() {
 		
 	}
-	public Film(int id, String name, MovieGenre movieGenre, int duration, String director, int releaseYear) {
+	public Movie(int id, String name, MovieGenre movieGenre, String duration, String director, String releaseYear) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,10 +39,10 @@ public class Film {
 	public void setMovieGenre(MovieGenre movieGenre) {
 		this.movieGenre = movieGenre;
 	}
-	public int getDuration() {
+	public String getDuration() {
 		return duration;
 	}
-	public void setDuration(int duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 	public String getDirector() {
@@ -51,10 +51,10 @@ public class Film {
 	public void setDirector(String director) {
 		this.director = director;
 	}
-	public int getReleaseYear() {
+	public String getReleaseYear() {
 		return releaseYear;
 	}
-	public void setReleaseYear(int releaseYear) {
+	public void setReleaseYear(String releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 }

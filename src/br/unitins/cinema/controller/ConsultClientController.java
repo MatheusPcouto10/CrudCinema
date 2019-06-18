@@ -18,7 +18,7 @@ import br.unitins.cinema.model.Usuario;
 @ViewScoped
 public class ConsultClientController  implements Serializable {
 
-	private static final long serialVersionUID = -1587204616142896335L;
+	private static final long serialVersionUID = -4762693472692597449L;
 
 	private String name;
 	

@@ -10,44 +10,7 @@ import br.unitins.cinema.application.Util;
 import br.unitins.cinema.model.Perfil;
 import br.unitins.cinema.model.Usuario;
 
-public class UsuarioDAO extends DAO<Usuario> {
-
-	public Usuario findUsuario(String login, String senha) {
-		// verificando se tem uma conexao valida
-		if (getConnection() == null) {
-			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
-			return null;
-		}
-		Usuario usuario = null;
-		PreparedStatement stat = null;
-		
-		try {
-			stat = getConnection().prepareStatement("SELECT * FROM usuario WHERE login = ? AND senha = ? ");
-			stat.setString(1, login);
-			stat.setString(2, senha);
-			
-			ResultSet rs = stat.executeQuery();
-			if(rs.next()) {
-				usuario = new Usuario();
-				usuario.setId(rs.getInt("id"));
-				usuario.setNome(rs.getString("nome"));
-				usuario.setLogin(rs.getString("login"));
-				usuario.setSenha(rs.getString("senha"));
-				usuario.setPerfil(Perfil.valueOf(rs.getInt("perfil")));
-				usuario.setDataNascimento(rs.getDate("data_nascimento") == null ? null : (rs.getDate("data_nascimento").toLocalDate()));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Util.addMessageError("Falha ao consultar o Banco de Dados.");
-		} finally {
-			try {
-				stat.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return usuario;		
-	}
+public class UsuarioLoginDAO extends DAO<Usuario> {
 
 	@Override
 	public boolean create(Usuario obj) {
@@ -94,80 +57,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 		return resultado;
 	}
 
-	@Override
-	public boolean update(Usuario obj) {
-		boolean resultado = false;
-		
-		// verificando se tem uma conexao valida
-		if (getConnection() == null) {
-			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
-			return false;
-		}
-		
-		PreparedStatement stat = null;
-		try {
-			stat =	getConnection().prepareStatement("UPDATE usuario SET "
-												   + "  nome = ?, "
-												   + "  login = ?, "
-												   + "  senha = ?, "
-												   + "  perfil = ?,  "
-												   + "  data_nascimento = ?  "												   
-												   + "WHERE id = ? ");
-			stat.setString(1, obj.getNome());
-			stat.setString(2, obj.getLogin());
-			stat.setString(3, obj.getSenha());
-			stat.setInt(4, obj.getPerfil().getValue());
-			stat.setDate(5, (obj.getDataNascimento() == null ? null : java.sql.Date.valueOf(obj.getDataNascimento())));
-			stat.setInt(6, obj.getId());
-			
-			stat.execute();
-			Util.addMessageError("Alteracao realizada com sucesso!");
-			resultado = true;
-		} catch (SQLException e) {
-			Util.addMessageError("Falha ao Alterar.");
-			e.printStackTrace();
-		} finally {
-			try {
-				stat.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return resultado;
-		
-	}
-
-	@Override
-	public boolean delete(int id) {
-		boolean resultado = false;
-		
-		// verificando se tem uma conexao valida
-		if (getConnection() == null) {
-			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
-			return false;
-		}
-		
-		PreparedStatement stat = null;
-		try {
-			stat =	getConnection().prepareStatement("DELETE FROM usuario WHERE id = ? ");
-			stat.setInt(1, id);
-			
-			stat.execute();
-			Util.addMessageError("Exclusao realizada com sucesso!");
-			resultado = true;
-		} catch (SQLException e) {
-			Util.addMessageError("Falha ao Excluir.");
-			e.printStackTrace();
-		} finally {
-			try {
-				stat.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return resultado;
-	}
-
+	
 	@Override
 	public Usuario findById(int id) {
 		// verificando se tem uma conexao valida
@@ -287,4 +177,19 @@ public class UsuarioDAO extends DAO<Usuario> {
 		}
 		return listaUsuario;
 	}
+
+
+	@Override
+	public boolean update(Usuario obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean delete(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
+
