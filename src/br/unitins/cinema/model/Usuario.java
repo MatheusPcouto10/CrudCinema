@@ -4,21 +4,26 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class Usuario {
 	private Integer id;
 	
-	//@NotBlank(message="O nome deve ser informado.")
+	@NotBlank(message="O nome deve ser informado.")
 	private String nome;
 	
-	//@Email(message="Email invalido.")
+	@Email(message="Email invalido.")
+	@NotBlank(message="O email deve ser informado.")
 	private String login;
 	
-	//@Size(min=6, max=20, message="Tamanho incompativel, valor minimo: 6 e valor maximo:20.")
+	@NotNull
 	private String senha;
 	
+	@NotNull
 	private LocalDate dataNascimento;
+	
+	@NotNull
 	private Perfil perfil;
 
 	public Usuario() {

@@ -54,18 +54,6 @@
 						<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 						</input>
 					</div>
-					<div class="mb-3">
-						<h:outputLabel value="Perfil de Usuário:"
-							styleClass="control-label" />
-						<h:selectOneListbox
-							value="#{usuarioLoginController.usuario.perfil}"
-							styleClass="form-control" size="1" style="height: 34px;">
-
-							<f:selectItem itemLabel="Selecione ..." />
-							<f:selectItems value="#{usuarioLoginController.listaPerfil}"
-								var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
-						</h:selectOneListbox>
-					</div>
 
 					<hr />
 
@@ -89,7 +77,7 @@
 
 						<div class="col-md-3 mb-3">
 							<h:commandButton value="Voltar"
-								actionListener="#{usuarioLoginController.voltar}"
+								actionListener="#{usuarioLoginController.redirect}"
 								styleClass="col-md-2 mb-3 btn btn-default form-control">
 								<f:ajax execute="@this" render="@all" />
 							</h:commandButton>

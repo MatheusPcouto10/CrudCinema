@@ -34,13 +34,12 @@ public class UsuarioLoginDAO extends DAO<Usuario> {
 										+ " ?, "
 										+ " ?, "
 										+ " ?, "
-										+ " ?,"
+										+ " 1,"
 										+ " ? ) ");
 			stat.setString(1, obj.getNome());
 			stat.setString(2, obj.getLogin());
 			stat.setString(3, obj.getSenha());			
-			stat.setInt(4, obj.getPerfil().getValue());
-			stat.setDate(5, (obj.getDataNascimento() == null ? null : java.sql.Date.valueOf(obj.getDataNascimento())));
+			stat.setDate(4, (obj.getDataNascimento() == null ? null : java.sql.Date.valueOf(obj.getDataNascimento())));
 			stat.execute();
 			Util.addMessageError("Cadastro realizado com sucesso!");
 			resultado = true;

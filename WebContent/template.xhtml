@@ -17,10 +17,8 @@
 
 <h:body>
 	<div class="wrapper">
-
 		<div class="box navbar navbar-inverse header">
-			<h1>CrudCinema</h1>
-			<br/>
+			<h1>.: Lavajato :.</h1>
 			<div style="text-align: right;">
 				<h:form>
 					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}" />
@@ -29,25 +27,21 @@
 				</h:form>
 			</div>
 		</div>
-
 		<div class="box sidebar" style="text-align: center;">
 			<ui:insert name="menu">
 				<h1>Menu</h1>
 				<h:form>
 
-					<h:commandLink value="Login"
-						action="#{templateController.redirecionar('/CrudCinema/faces/login.xhtml')}" />
-					<br />
-					<h:commandLink value="Cadastro de Filme"
-						action="#{templateController.redirecionar('/CrudCinema/faces/pages/movie.xhtml')}" />
 					<br />
 					<h:commandLink value="Cadastro de Usuário"
+						disabled="#{templateController.usuarioLogado.perfil.value == 1}"
 						action="#{templateController.redirecionar('/CrudCinema/faces/pages/usuario2.xhtml')}" />
 					<br />
-					<h:commandLink value="Cadastro de Serviço"
+					<h:commandLink value="Cadastro de Filme"
+						disabled="#{templateController.usuarioLogado.perfil.value == 1}"
 						action="#{templateController.redirecionar('/CrudCinema/faces/pages/servico.xhtml')}" />
 					<br />
-					<h:commandLink value="Venda de Serviço"
+					<h:commandLink value="Bilheteria"
 						action="#{templateController.redirecionar('/CrudCinema/faces/pages/vendaservico.xhtml')}" />
 					<br />
 					<h:commandLink

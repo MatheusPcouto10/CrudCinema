@@ -11,6 +11,7 @@ import javax.inject.Named;
 
 import br.unitins.cinema.application.Util;
 import br.unitins.cinema.dao.UsuarioDAO;
+import br.unitins.cinema.dao.UsuarioLoginDAO;
 import br.unitins.cinema.model.Perfil;
 import br.unitins.cinema.model.Usuario;
 
@@ -31,7 +32,7 @@ public class UsuarioLoginController implements Serializable {
 	
 	public List<Usuario> getListaUsuario(){
 		if (listaUsuario == null) {
-			UsuarioDAO dao = new UsuarioDAO();
+			UsuarioLoginDAO dao = new UsuarioLoginDAO();
 			listaUsuario = dao.findAll();
 			if (listaUsuario == null)
 				listaUsuario = new ArrayList<Usuario>();
@@ -45,7 +46,7 @@ public class UsuarioLoginController implements Serializable {
 		// encriptando a senha do usuario
 		getUsuario().setSenha(Util.encrypt(getUsuario().getSenha()));
 		
-		UsuarioDAO dao = new UsuarioDAO();
+		UsuarioLoginDAO dao = new UsuarioLoginDAO();
 		if (dao.create(getUsuario())) {
 			limpar();
 			// para atualizar o data table

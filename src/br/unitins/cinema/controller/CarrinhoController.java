@@ -24,40 +24,39 @@ public class CarrinhoController  implements Serializable {
 	
 	private Venda venda;
 	
-	public void remover(int id) {
-		// pesquisa o servico selecionado
-		ServicoDAO dao = new ServicoDAO();
-		Servico servico = dao.findById(id);
-		
-		// verifica se existe o carrinho na sessao
-		if (Session.getInstance().getAttribute("carrinho") == null) {
-			// adiciona o carrinho na sessao
-			Session.getInstance().setAttribute("carrinho", new ArrayList<ItemVenda>());
+	public void remover(String nomeDoFilme) {
+		//System.out.println(nomeDoFilme);
+
+		// obtendo o carrinho da sessao
+		List<ItemVenda> carrinho = (List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
+
+		for (ItemVenda itemVenda : carrinho) {
+			//System.out.println(itemVenda.getServico().getDescricao());
+
+			if (itemVenda.getServico().getDescricao().equals(nomeDoFilme)) {
+				carrinho.remove(itemVenda);
+				return;
+			}
+
 		}
-		// busca o carrinho da sessao
-		List<ItemVenda> carrinho =  
-				(List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
-		
-		// cria um item de venda
-		ItemVenda item = new ItemVenda();
-		item.getServico();
-		item.getServico().getValor();
-		
-		// adiciona o item no objeto de referencia do carrinho
-		carrinho.remove(item);
-		
-		// atualiza o carrinho
-		Session.getInstance().setAttribute("carrinho", carrinho);
-		
-		Util.addMessageError("Removido com Sucesso! ");
+
 	}
 	
 	public void finalizar() {
-		getVenda().setCliente("Joao");
-		getVenda().setUsuario((Usuario)Session.getInstance().getAttribute("usuarioLogado"));
+		
+		Usuario user = (Usuario) Session.getInstance().getAttribute("usuarioLogado");
+		getVenda().setCliente(user.getNome());
+		
+
+		getVenda().setUsuario((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
 		VendaDAO dao = new VendaDAO();
 		dao.create(getVenda());
+
+		List<ItemVenda> carrinho = (List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
+		carrinho.clear();
+
 	}
+		
 	
 	public Venda getVenda() {
 		if (venda == null) {
