@@ -1,8 +1,0 @@
-BUGS:
-- implementacao do metodo remover de CarrinhoController
-- usuarioLogado no metodo finalizar de CarrinhoController
-- botoes disabled no template.xhtml (lógica do enum perfil)
-
-
-FALTANDO:
-- template

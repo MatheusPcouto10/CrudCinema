@@ -8,6 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.cinema.dao.ServicoDAO;
+import br.unitins.cinema.model.MovieGenre;
 import br.unitins.cinema.model.Servico;
 
 @Named
@@ -20,6 +21,7 @@ public class ServicoController implements Serializable {
 	
 	private List<Servico> listaServico = null;
 	
+
 	public List<Servico> getListaServico(){
 		if (listaServico == null) {
 			ServicoDAO dao = new ServicoDAO();
@@ -67,6 +69,10 @@ public class ServicoController implements Serializable {
 			listaServico = null;
 		}
 		dao.closeConnection();
+	}
+	
+	public MovieGenre[] getListaMovieGenre() {
+		return MovieGenre.values();
 	}
 	
 	public void limpar() {

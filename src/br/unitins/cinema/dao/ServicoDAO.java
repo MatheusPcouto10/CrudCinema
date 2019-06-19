@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.unitins.cinema.application.Util;
+import br.unitins.cinema.model.MovieGenre;
 import br.unitins.cinema.model.Servico;
 
 public class ServicoDAO extends DAO<Servico>  {
@@ -24,13 +25,29 @@ public class ServicoDAO extends DAO<Servico>  {
 		PreparedStatement stat = null;
 		try {
 			stat =	getConnection().prepareStatement("INSERT INTO servico ( "
+					                    + "  titulo, "
+					                    + "  movie_genre, "
+					                    + "  duration, "
+					                    + "  director, "
+					                    + "  release_year, "
 										+ "  descricao, "
 										+ "  valor ) " 
 										+ "VALUES ( "
 										+ " ?, "
+										+ " ?, "
+										+ " ?, "
+										+ " ?, "
+										+ " ?, "
+										+ " ?, "
 										+ " ? ) ");
-			stat.setString(1, obj.getDescricao());
-			stat.setDouble(2, obj.getValor());
+			
+			stat.setString(1, obj.getTitulo());
+			stat.setInt(2, obj.getMovieGenre().getValue());
+			stat.setString(3, obj.getDuration());
+			stat.setString(4, obj.getDirector());
+			stat.setString(5, obj.getReleaseYear());
+			stat.setString(6, obj.getDescricao());
+			stat.setDouble(7, obj.getValor());
 			
 			stat.execute();
 			Util.addMessageError("Cadastro realizado com sucesso!");
@@ -50,7 +67,7 @@ public class ServicoDAO extends DAO<Servico>  {
 
 	@Override
 	public boolean update(Servico obj) {
-		boolean resultado = false;
+boolean resultado = false;
 		
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
@@ -61,15 +78,25 @@ public class ServicoDAO extends DAO<Servico>  {
 		PreparedStatement stat = null;
 		try {
 			stat =	getConnection().prepareStatement("UPDATE servico SET "
-												   + "  descricao = ?, "
-												   + "  valor = ?  " 
-												   + "WHERE id = ? ");
-			stat.setString(1, obj.getDescricao());
-			stat.setDouble(2, obj.getValor());
-			stat.setInt(3, obj.getId());
+                                                   + "  titulo = ?, "
+                                                   + "  movie_genre = ?, "
+                                                   + "  duration = ?, "
+                                                   + "  director = ?, "
+                                                   + "  release_year = ?, "
+                                                   + "  descricao = ?, "
+                                                   + "  valor = ? "
+                                                   + "WHERE id = ? ");
 			
+            stat.setString(1, obj.getTitulo());
+            stat.setInt(2, obj.getMovieGenre().getValue());
+            stat.setString(3, obj.getDuration());
+            stat.setString(4, obj.getDirector());
+            stat.setString(5, obj.getReleaseYear());
+            stat.setString(6, obj.getDescricao());
+            stat.setDouble(7, obj.getValor());
+
 			stat.execute();
-			Util.addMessageError("Alteraï¿½ï¿½o realizada com sucesso!");
+			Util.addMessageError("Alteração realizada com sucesso!");
 			resultado = true;
 		} catch (SQLException e) {
 			Util.addMessageError("Falha ao Alterar.");
@@ -97,7 +124,7 @@ public class ServicoDAO extends DAO<Servico>  {
 		
 		PreparedStatement stat = null;
 		try {
-			stat =	getConnection().prepareStatement("DELETE FROM Servico WHERE id = ? ");
+			stat =	getConnection().prepareStatement("DELETE FROM servico WHERE id = ? ");
 			stat.setInt(1, id);
 			
 			stat.execute();
@@ -128,13 +155,18 @@ public class ServicoDAO extends DAO<Servico>  {
 		PreparedStatement stat = null;
 		
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM Servico WHERE id = ?");
+			stat = getConnection().prepareStatement("SELECT * FROM servico WHERE id = ?");
 			stat.setInt(1, id);
 			
 			ResultSet rs = stat.executeQuery();
 			if(rs.next()) {
 				servico = new Servico();
 				servico.setId(rs.getInt("id"));
+				servico.setTitulo(rs.getString("titulo"));
+				servico.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				servico.setDuration(rs.getString("duration"));
+				servico.setDirector(rs.getString("director"));
+				servico.setReleaseYear(rs.getString("release_year"));
 				servico.setDescricao(rs.getString("descricao"));
 				servico.setValor(rs.getDouble("valor"));
 			}
@@ -164,11 +196,16 @@ public class ServicoDAO extends DAO<Servico>  {
 		PreparedStatement stat = null;
 	
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM Servico");
+			stat = getConnection().prepareStatement("SELECT * FROM servico");
 			ResultSet rs = stat.executeQuery();
 			while(rs.next()) {
 				Servico servico = new Servico();
 				servico.setId(rs.getInt("id"));
+				servico.setTitulo(rs.getString("titulo"));
+				servico.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				servico.setDuration(rs.getString("duration"));
+				servico.setDirector(rs.getString("director"));
+				servico.setReleaseYear(rs.getString("release_year"));
 				servico.setDescricao(rs.getString("descricao"));
 				servico.setValor(rs.getDouble("valor"));
 
@@ -188,7 +225,7 @@ public class ServicoDAO extends DAO<Servico>  {
 		return listaServico;
 	}
 	
-	public List<Servico> findByDescricao(String descricao) {
+	public List<Servico> findByTitulo(String titulo) {
 		// verificando se tem uma conexao valida
 		if (getConnection() == null) {
 			Util.addMessageError("Falha ao conectar ao Banco de Dados.");
@@ -200,13 +237,18 @@ public class ServicoDAO extends DAO<Servico>  {
 		PreparedStatement stat = null;
 	
 		try {
-			stat = getConnection().prepareStatement("SELECT * FROM servico WHERE descricao ILIKE ?");
-			stat.setString(1, (descricao == null? "%" : "%"+descricao+"%"));
+			stat = getConnection().prepareStatement("SELECT * FROM servico WHERE titulo ILIKE ?");
+			stat.setString(1, (titulo == null? "%" : "%"+titulo+"%"));
 			ResultSet rs = stat.executeQuery();
 			
 			while(rs.next()) {
 				Servico servico = new Servico();
 				servico.setId(rs.getInt("id"));
+				servico.setTitulo(rs.getString("titulo"));
+				servico.setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				servico.setDuration(rs.getString("duration"));
+				servico.setDirector(rs.getString("director"));
+				servico.setReleaseYear(rs.getString("release_year"));
 				servico.setDescricao(rs.getString("descricao"));
 				servico.setValor(rs.getDouble("valor"));
 				listaServico.add(servico);
@@ -225,8 +267,6 @@ public class ServicoDAO extends DAO<Servico>  {
 		return listaServico;
 
 	}
-
-	
 
 }
 

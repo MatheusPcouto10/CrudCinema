@@ -25,13 +25,12 @@ public class CarrinhoController  implements Serializable {
 	private Venda venda;
 	
 	public void remover(String nomeDoFilme) {
-		//System.out.println(nomeDoFilme);
 
 		// obtendo o carrinho da sessao
 		List<ItemVenda> carrinho = (List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
-
+		
+        // Removendo o item do carrinho 
 		for (ItemVenda itemVenda : carrinho) {
-			//System.out.println(itemVenda.getServico().getDescricao());
 
 			if (itemVenda.getServico().getDescricao().equals(nomeDoFilme)) {
 				carrinho.remove(itemVenda);
@@ -44,6 +43,7 @@ public class CarrinhoController  implements Serializable {
 	
 	public void finalizar() {
 		
+		// Definindo o usuario que está logado com o cliente
 		Usuario user = (Usuario) Session.getInstance().getAttribute("usuarioLogado");
 		getVenda().setCliente(user.getNome());
 		
@@ -51,7 +51,8 @@ public class CarrinhoController  implements Serializable {
 		getVenda().setUsuario((Usuario) Session.getInstance().getAttribute("usuarioLogado"));
 		VendaDAO dao = new VendaDAO();
 		dao.create(getVenda());
-
+		
+        // Finalizando venda e limpando o carrinho
 		List<ItemVenda> carrinho = (List<ItemVenda>) Session.getInstance().getAttribute("carrinho");
 		carrinho.clear();
 

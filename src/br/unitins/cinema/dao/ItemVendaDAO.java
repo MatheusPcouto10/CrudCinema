@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.unitins.cinema.application.Util;
 import br.unitins.cinema.model.ItemVenda;
+import br.unitins.cinema.model.MovieGenre;
 import br.unitins.cinema.model.Servico;
 import br.unitins.cinema.model.Venda;
 
@@ -32,6 +33,11 @@ public class ItemVendaDAO extends DAO<ItemVenda>  {
 													" i.idvenda, "+
 													" i.idservico, "+
 													" s.descricao, "+
+													" s.titulo, "+
+													" s.movie_genre, "+
+													" s.duration, "+
+													" s.director, "+
+													" s.release_year, "+
 													" s.valor as valorservico "+
 													"FROM "+
 													" itemvenda i, "+
@@ -49,6 +55,11 @@ public class ItemVendaDAO extends DAO<ItemVenda>  {
 				itemVenda.setVenda(venda);
 				itemVenda.setServico(new Servico());
 				itemVenda.getServico().setId(rs.getInt("idservico"));
+				itemVenda.getServico().setTitulo(rs.getString("titulo"));
+				itemVenda.getServico().setMovieGenre(MovieGenre.valueOf(rs.getInt("movie_genre")));
+				itemVenda.getServico().setDuration(rs.getString("duration"));
+				itemVenda.getServico().setDirector(rs.getString("director"));
+				itemVenda.getServico().setReleaseYear(rs.getString("release_year"));
 				itemVenda.getServico().setDescricao(rs.getString("descricao"));
 				itemVenda.getServico().setValor(rs.getDouble("valorservico"));
 				

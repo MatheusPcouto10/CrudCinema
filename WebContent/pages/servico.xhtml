@@ -4,101 +4,164 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	<ui:composition template="../template.xhtml">
-		<ui:define name="conteudo">
-			<div class="container">
-				<div class="navbar navbar-inverse">
-					<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro	de Usuário</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-xs-updated">
-						<h:form styleClass="form-horizontal">
-							<h:messages id="messages" style="color:red" globalOnly="false"  />
-		
-							<div class="mb-3">
-								<h:outputLabel value="Descrição:" styleClass="control-label" />
-								<h:inputText id="itNome" value="#{servicoController.servico.descricao}"
-									styleClass="form-control"/>
-								<h:message for="itNome" style="color:red" />
+<ui:composition template="../template.xhtml">
+	<ui:define name="conteudo">
+		<div class="container">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro
+					de Filme</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-xs-updated">
+					<h:form styleClass="form-horizontal">
+						<h:messages id="messages" style="color:red" globalOnly="false" />
+
+						<div class="mb-3">
+							<h:outputLabel value="Título do Filme:"
+								styleClass="control-label" />
+							<h:inputText id="itTitulo"
+								value="#{servicoController.servico.titulo}"
+								styleClass="form-control" />
+							<h:message for="itTitulo" style="color:red" />
+						</div>
+
+						<div class="mb-3">
+							<h:outputLabel value="Gênero do filme:"
+								styleClass="control-label" />
+							<h:selectOneListbox
+								value="#{servicoController.servico.movieGenre}"
+								styleClass="form-control" size="1" style="height: 34px;">
+
+								<f:selectItem itemLabel="Selecione ..." />
+								<f:selectItems value="#{servicoController.listaMovieGenre}"
+									var="movieGenre" itemLabel="#{movieGenre.label}"
+									itemValue="#{movieGenre}" />
+							</h:selectOneListbox>
+						</div>
+
+						<div class="mb-3">
+							<h:outputLabel value="Duração:" styleClass="control-label" />
+							<h:inputText id="itDuracao"
+								value="#{servicoController.servico.duration}"
+								styleClass="form-control" />
+							<h:message for="itDuracao" style="color:red" />
+						</div>
+
+						<div class="mb-3">
+							<h:outputLabel value="Diretor:" styleClass="control-label" />
+							<h:inputText id="itDiretor"
+								value="#{servicoController.servico.director}"
+								styleClass="form-control" />
+							<h:message for="itDiretor" style="color:red" />
+						</div>
+
+						<div class="mb-3">
+							<h:outputLabel value="Ano de Lançamento:"
+								styleClass="control-label" />
+							<h:inputText id="itAno"
+								value="#{servicoController.servico.releaseYear}"
+								styleClass="form-control" />
+							<h:message for="itAno" style="color:red" />
+						</div>
+
+						<div class="mb-3">
+							<h:outputLabel value="Descrição:" styleClass="control-label" />
+							<h:inputText id="itNome"
+								value="#{servicoController.servico.descricao}"
+								styleClass="form-control" />
+							<h:message for="itNome" style="color:red" />
+						</div>
+						<div class="mb-3">
+							<h:outputLabel value="Valor:" styleClass="control-label" />
+							<h:inputText id="itLogin"
+								value="#{servicoController.servico.valor}"
+								styleClass="form-control">
+								<f:convertNumber locale="pt_BR" pattern="###0.00" />
+							</h:inputText>
+							<h:message for="itLogin	" style="color:red" />
+						</div>
+						<hr />
+
+						<div class="row">
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Incluir"
+									disabled="#{servicoController.servico.id != null}"
+									actionListener="#{servicoController.incluir}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									<f:ajax execute="@form" render="@form formDataTable" />
+								</h:commandButton>
 							</div>
-							<div class="mb-3">
-								<h:outputLabel value="Valor:" styleClass="control-label" />
-								<h:inputText id="itLogin" value="#{servicoController.servico.valor}"
-									styleClass="form-control" >
-									<f:convertNumber  locale="pt_BR" pattern="###0.00"/>
-								</h:inputText>
-								<h:message for="itLogin	" style="color:red" />
+							<div class="col-md-3 mb-3">
+								<h:commandButton value="Limpar"
+									actionListener="#{servicoController.limpar}"
+									styleClass="col-md-2 mb-3 btn btn-default form-control">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
 							</div>
-							<hr/>
-							
-							<div class="row">
-								<div class="col-md-3 mb-3">
-									<h:commandButton value="Incluir"
-										disabled="#{servicoController.servico.id != null}"
-										actionListener="#{servicoController.incluir}"
-										styleClass="col-md-2 mb-3 btn btn-default form-control">
-										<f:ajax execute="@form" render="@form formDataTable" />
-									</h:commandButton>
-								</div>
-								<div class="col-md-3 mb-3">
-									<h:commandButton value="Alterar"
-										disabled="#{servicoController.servico.id == null}"
-										actionListener="#{servicoController.alterar}"
-										styleClass="btn btn-default form-control">
-										<f:ajax execute="@form" render="@form formDataTable" />
-									</h:commandButton>
-								</div>
-								<div class="col-md-3 mb-3">
-									<h:commandButton value="Excluir"
-										disabled="#{servicoController.servico.id == null}"
-										actionListener="#{servicoController.excluir}"
-										styleClass="col-md-2 mb-3 btn btn-default form-control">
-										<f:ajax render="@form formDataTable" />
-									</h:commandButton>
-								</div>
-								<div class="col-md-3 mb-3">
-									<h:commandButton value="Limpar"
-										actionListener="#{servicoController.limpar}"
-										styleClass="col-md-2 mb-3 btn btn-default form-control" >
-										<f:ajax execute="@this" render="@all" />
-									</h:commandButton>
-								</div>
-							</div>
-		
-							<hr />
-						</h:form>
-		
-						<h:form id="formDataTable" styleClass="form-horizontal">
-							<div class="md-3">
-		
-								<h:dataTable value="#{servicoController.listaServico}" var="obj"
-									styleClass="table table-striped table-hover">
-									<h:column>
-										<f:facet name="header">Id</f:facet>
-										<h:outputLabel value="#{obj.id}" />
-									</h:column>
-		
-									<h:column>
-										<f:facet name="header">Descrição</f:facet>
-										<h:commandLink value="#{obj.descricao}"
-											actionListener="#{servicoController.editar(obj.id)}" />
-									</h:column>
-		
-									<h:column>
-										<f:facet name="header">Valor</f:facet>
-										<h:outputLabel value="#{obj.valor}"
-											actionListener="#{servicoController.editar(obj.id)}" >
-											<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
-										</h:outputLabel>
-									</h:column>
-		
-								</h:dataTable>
-							</div>
-						</h:form>
-		
-					</div>
+						</div>
+
+						<hr />
+					</h:form>
+
+					<h:form id="formDataTable" styleClass="form-horizontal">
+						<div class="md-3">
+
+							<h:dataTable value="#{servicoController.listaServico}" var="obj"
+								styleClass="table table-striped table-hover">
+
+
+								<h:column>
+									<f:facet name="header">Id</f:facet>
+									<h:outputLabel value="#{obj.id}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Filme</f:facet>
+									<h:outputLabel value="#{obj.titulo}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Gênero</f:facet>
+									<h:outputLabel value="#{obj.movieGenre.label}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Duração</f:facet>
+									<h:outputLabel value="#{obj.duration}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Diretor</f:facet>
+									<h:outputLabel value="#{obj.director}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Ano de Lançamento</f:facet>
+									<h:outputLabel value="#{obj.releaseYear}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Descrição</f:facet>
+									<h:commandLink value="#{obj.descricao}"
+										actionListener="#{servicoController.editar(obj.id)}" />
+								</h:column>
+
+								<h:column>
+									<f:facet name="header">Valor</f:facet>
+									<h:outputLabel value="#{obj.valor}"
+										actionListener="#{servicoController.editar(obj.id)}">
+										<f:convertNumber locale="pt_BR" currencySymbol="R$"
+											type="currency" />
+									</h:outputLabel>
+								</h:column>
+
+							</h:dataTable>
+						</div>
+					</h:form>
+
 				</div>
 			</div>
-		</ui:define>
-	</ui:composition>
+		</div>
+	</ui:define>
+</ui:composition>
 </html>
