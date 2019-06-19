@@ -8,7 +8,7 @@
 		<ui:define name="conteudo">
 			<div class="container">
 				<div class="navbar navbar-inverse">
-					<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro	de Usuário</div>
+					<div class="navbar-brand" style="width: 100%; text-align: center;">User Register</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-xs-updated">
@@ -16,7 +16,7 @@
 							<h:messages id="messages" style="color:red" globalOnly="false"  />
 		
 							<div class="mb-3">
-								<h:outputLabel value="Nome:" styleClass="control-label" />
+								<h:outputLabel value="Name:" styleClass="control-label" />
 								<h:inputText id="itNome" value="#{usuarioController.usuario.nome}"
 									styleClass="form-control">
 									<f:validateLength minimum="2" maximum="10" />
@@ -25,19 +25,19 @@
 								<h:message for="itNome" style="color:red" />
 							</div>
 							<div class="mb-3">
-								<h:outputLabel value="Login:" styleClass="control-label" />
+								<h:outputLabel value="Email:" styleClass="control-label" />
 								<h:inputText id="itLogin" value="#{usuarioController.usuario.login}"
 									styleClass="form-control" />
 								<h:message for="itLogin	" style="color:red" />
 							</div>
 							<div class="mb-3">
-								<h:outputLabel  value="Senha:" styleClass="control-label" />
+								<h:outputLabel  value="Password:" styleClass="control-label" />
 								<h:inputSecret id="itSenha" value="#{usuarioController.usuario.senha}"
 									styleClass="form-control" />
 								<h:message for="itSenha" style="color:red" />
 							</div>
 							<div class="mb-3">
-								<h:outputLabel value="Data de Nascimento:" styleClass="control-label" />
+								<h:outputLabel value="Birth Date:" styleClass="control-label" />
 								<input type="date" class="form-control"
 									   jsf:value="#{usuarioController.usuario.dataNascimento}"
 									   pattern="yyyy-MM-dd">
@@ -45,12 +45,12 @@
 								</input>
 							</div>
 							<div class="mb-3">
-								<h:outputLabel value="Perfil de Usuário:"
+								<h:outputLabel value="User Profile:"
 									styleClass="control-label" />
 								<h:selectOneListbox value="#{usuarioController.usuario.perfil}"
 									styleClass="form-control" size="1" style="height: 34px;">
 		
-									<f:selectItem itemLabel="Selecione ..." />
+									<f:selectItem itemLabel="Select one ..." />
 									<f:selectItems value="#{usuarioController.listaPerfil}"
 										var="perfil" itemLabel="#{perfil.label}" itemValue="#{perfil}" />
 								</h:selectOneListbox>
@@ -60,7 +60,7 @@
 							
 							<div class="row">
 								<div class="col-md-3 mb-3">
-									<h:commandButton value="Incluir"
+									<h:commandButton value="Add"
 										disabled="#{usuarioController.usuario.id != null}"
 										actionListener="#{usuarioController.incluir}"
 										styleClass="col-md-2 mb-3 btn btn-default form-control">
@@ -68,7 +68,7 @@
 									</h:commandButton>
 								</div>
 								<div class="col-md-3 mb-3">
-									<h:commandButton value="Alterar"
+									<h:commandButton value="Update"
 										disabled="#{usuarioController.usuario.id == null}"
 										actionListener="#{usuarioController.alterar}"
 										styleClass="btn btn-default form-control">
@@ -76,7 +76,7 @@
 									</h:commandButton>
 								</div>
 								<div class="col-md-3 mb-3">
-									<h:commandButton value="Excluir"
+									<h:commandButton value="Delete"
 										disabled="#{usuarioController.usuario.id == null}"
 										actionListener="#{usuarioController.excluir}"
 										styleClass="col-md-2 mb-3 btn btn-default form-control">
@@ -84,7 +84,7 @@
 									</h:commandButton>
 								</div>
 								<div class="col-md-3 mb-3">
-									<h:commandButton value="Limpar"
+									<h:commandButton value="Clean"
 										actionListener="#{usuarioController.limpar}"
 										styleClass="col-md-2 mb-3 btn btn-default form-control" >
 										<f:ajax execute="@this" render="@all" />
@@ -106,31 +106,31 @@
 									</h:column>
 		
 									<h:column>
-										<f:facet name="header">Nome</f:facet>
+										<f:facet name="header">Name</f:facet>
 										<h:commandLink value="#{obj.nome}"
 											actionListener="#{usuarioController.editar(obj.id)}" />
 									</h:column>
 		
 									<h:column>
-										<f:facet name="header">Login</f:facet>
+										<f:facet name="header">Email</f:facet>
 										<h:commandLink value="#{obj.login}"
 											actionListener="#{usuarioController.editar(obj.id)}" />
 									</h:column>
 		
 									<h:column>
-										<f:facet name="header">Senha</f:facet>
+										<f:facet name="header">Password</f:facet>
 										<h:outputLabel value="##########" />
 									</h:column>
 									
 									<h:column>
-										<f:facet name="header">Data Nascimento</f:facet>
+										<f:facet name="header">Birth Date</f:facet>
 										<h:outputLabel value="#{obj.dataNascimento}" >
 											<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
 										</h:outputLabel>
 									</h:column>							
 		
 									<h:column>
-										<f:facet name="header">Perfil</f:facet>
+										<f:facet name="header">Profile</f:facet>
 										<h:outputLabel value="#{obj.perfil.label}" />
 									</h:column>
 								</h:dataTable>

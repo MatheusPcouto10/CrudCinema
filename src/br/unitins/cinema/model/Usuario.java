@@ -14,7 +14,7 @@ public class Usuario {
 	private String nome;
 	
 	@Email(message="Email invalido.")
-	@NotBlank(message="O email deve ser informado.")
+	@NotNull(message="O email deve ser informado.")
 	private String login;
 	
 	@NotNull

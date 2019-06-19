@@ -5,9 +5,9 @@ import java.util.List;
 
 public enum Perfil {
 	
-	CLIENTE(1, "Cliente", Arrays.asList("login.xhtml", "template.xhtml", "vendaservico.xhtml", 
+	CUSTOMER(1, "Customer", Arrays.asList("login.xhtml", "template.xhtml", "vendaservico.xhtml", 
 			"detalhesvenda.xhtml", "carrinho.xhtml", "historico.xhtml", "signup.xhtml")),
-	FUNCIONARIO(2, "Funcionario", Arrays.asList("carrinho.xhtml", "carro.xhtml", 
+	FUNCIONARY(2, "Funcionary", Arrays.asList("carrinho.xhtml", "carro.xhtml", 
 			"consultausuario.xhtml", "detalhesvenda.xhtml", "historico.xhtml", "servico.xhtml", 
 			"usuario2.xhtml", "vendaservico.xhtml", "login.xhtml", "signup.xhtml", "template.xhtml"));
 

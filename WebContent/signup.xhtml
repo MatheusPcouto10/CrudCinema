@@ -2,94 +2,75 @@
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
-	<title>Sistema de Cadastro</title>
+	<title>Movie Theater System</title>
+	<h:outputStylesheet library="css" name="signup.css" />
 </h:head>
 <h:body>
+
 	<div class="container">
-		<div class="navbar navbar-inverse">
-			<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro
-				de Usuário</div>
-		</div>
-		<h:messages style="color:red" />
-		<div class="row">
-			<div class="col-xs-12 col-xs-updated">
-				<h:form styleClass="form-horizontal">
-					<h:messages id="messages" style="color:red" globalOnly="false" />
-
-					<div class="mb-3">
-						<h:outputLabel value="Nome:" styleClass="control-label" />
-						<h:inputText id="itNome"
-							value="#{usuarioLoginController.usuario.nome}"
-							styleClass="form-control">
-							<f:validateLength minimum="2" maximum="10" />
-
-						</h:inputText>
-						<h:message for="itNome" style="color:red" />
-					</div>
-					<div class="mb-3">
-						<h:outputLabel value="Login:" styleClass="control-label" />
-						<h:inputText id="itLogin"
-							value="#{usuarioLoginController.usuario.login}"
-							styleClass="form-control" />
-						<h:message for="itLogin	" style="color:red" />
-					</div>
-					<div class="mb-3">
-						<h:outputLabel value="Senha:" styleClass="control-label" />
-						<h:inputSecret id="itSenha"
-							value="#{usuarioLoginController.usuario.senha}"
-							styleClass="form-control" />
-						<h:message for="itSenha" style="color:red" />
-					</div>
-					<div class="mb-3">
-						<h:outputLabel value="Data de Nascimento:"
-							styleClass="control-label" />
-						<input type="date" class="form-control"
-							jsf:value="#{usuarioLoginController.usuario.dataNascimento}"
-							pattern="yyyy-MM-dd">
-						<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
-						</input>
-					</div>
-
-					<hr />
-
-					<div class="row">
-						<div class="col-md-3 mb-3">
-							<h:commandButton value="Incluir"
-								disabled="#{usuarioLoginController.usuario.id != null}"
-								actionListener="#{usuarioLoginController.incluir}"
-								styleClass="col-md-2 mb-3 btn btn-default form-control">
-								<f:ajax execute="@form" render="@form formDataTable" />
-							</h:commandButton>
-						</div>
-
-						<div class="col-md-3 mb-3">
-							<h:commandButton value="Limpar"
-								actionListener="#{usuarioLoginController.limpar}"
-								styleClass="col-md-2 mb-3 btn btn-default form-control">
-								<f:ajax execute="@this" render="@all" />
-							</h:commandButton>
-						</div>
-
-						<div class="col-md-3 mb-3">
-							<h:commandButton value="Voltar"
-								actionListener="#{usuarioLoginController.redirect}"
-								styleClass="col-md-2 mb-3 btn btn-default form-control">
-								<f:ajax execute="@this" render="@all" />
-							</h:commandButton>
-						</div>
-					</div>
-
-					<hr />
-				</h:form>
-
+		<h1 id="main-title">Sign Up!</h1>
+		<h:messages style="color:red"/>
+		<h:form>
+			<div id="first-name" class="placeholders">
+				<label id="pl_first_name" for="text" class="">Name</label> <input
+					id="pl_first_name" type="text"
+					jsf:value="#{usuarioLoginController.usuario.nome}" name="nome"
+					pt:placeholder="Enter your name...	" />
 			</div>
-		</div>
+
+			<div id="email" class="placeholders">
+				<label id="pl_email" for="text" class="">Email</label> <input
+					id="pl_email" type="email" name="email"
+					jsf:value="#{usuarioLoginController.usuario.login}"
+					placeholder="Enter your email..." />
+			</div>
+
+			<div id="password" class="placeholders">
+				<label id="pl_password" for="text" class="">Senha</label> <input
+					id="pl_password" type="password" name="password"
+					jsf:value="#{usuarioLoginController.usuario.senha}"
+					placeholder="Enter your password..." />
+			</div>
+
+			<div id="date" class="placeholders">
+				<label id="pl_date" class="">Birth Date</label> <input
+					id="pl_date" type="date" name="date"
+					jsf:value="#{usuarioLoginController.usuario.dataNascimento}"
+					pattern="yyyy-MM-dd">
+				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+				</input>
+			</div>
+
+			<br />
+
+
+			<h:panelGrid columns="3">
+				<h:commandButton value="Add"
+					disabled="#{usuarioLoginController.usuario.id != null}"
+					actionListener="#{usuarioLoginController.incluir}" class="button">
+					<f:ajax execute="@form" render="@form formDataTable" />
+				</h:commandButton>
+				<h:commandButton value="Clean"
+					actionListener="#{usuarioLoginController.limpar}" class="button">
+					<f:ajax execute="@this" render="@all" />
+				</h:commandButton>
+				<h:commandButton value="Back"
+					actionListener="#{usuarioLoginController.redirect}" class="button">
+					<f:ajax execute="@this" render="@all" />
+				</h:commandButton>
+			</h:panelGrid>
+
+		</h:form>
+
 	</div>
+
+
 </h:body>
 </html>
 

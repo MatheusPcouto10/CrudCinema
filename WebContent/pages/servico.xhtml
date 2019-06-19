@@ -8,8 +8,7 @@
 	<ui:define name="conteudo">
 		<div class="container">
 			<div class="navbar navbar-inverse">
-				<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro
-					de Filme</div>
+				<div class="navbar-brand" style="width: 100%; text-align: center;">Movie Register</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-xs-updated">
@@ -17,7 +16,7 @@
 						<h:messages id="messages" style="color:red" globalOnly="false" />
 
 						<div class="mb-3">
-							<h:outputLabel value="Título do Filme:"
+							<h:outputLabel value="Title:"
 								styleClass="control-label" />
 							<h:inputText id="itTitulo"
 								value="#{servicoController.servico.titulo}"
@@ -26,13 +25,13 @@
 						</div>
 
 						<div class="mb-3">
-							<h:outputLabel value="Gênero do filme:"
+							<h:outputLabel value="Movie Genre:"
 								styleClass="control-label" />
 							<h:selectOneListbox
 								value="#{servicoController.servico.movieGenre}"
 								styleClass="form-control" size="1" style="height: 34px;">
 
-								<f:selectItem itemLabel="Selecione ..." />
+								<f:selectItem itemLabel="Select one ..." />
 								<f:selectItems value="#{servicoController.listaMovieGenre}"
 									var="movieGenre" itemLabel="#{movieGenre.label}"
 									itemValue="#{movieGenre}" />
@@ -40,7 +39,7 @@
 						</div>
 
 						<div class="mb-3">
-							<h:outputLabel value="Duração:" styleClass="control-label" />
+							<h:outputLabel value="Duration:" styleClass="control-label" />
 							<h:inputText id="itDuracao"
 								value="#{servicoController.servico.duration}"
 								styleClass="form-control" />
@@ -48,7 +47,7 @@
 						</div>
 
 						<div class="mb-3">
-							<h:outputLabel value="Diretor:" styleClass="control-label" />
+							<h:outputLabel value="Director:" styleClass="control-label" />
 							<h:inputText id="itDiretor"
 								value="#{servicoController.servico.director}"
 								styleClass="form-control" />
@@ -56,7 +55,7 @@
 						</div>
 
 						<div class="mb-3">
-							<h:outputLabel value="Ano de Lançamento:"
+							<h:outputLabel value="Release Year:"
 								styleClass="control-label" />
 							<h:inputText id="itAno"
 								value="#{servicoController.servico.releaseYear}"
@@ -65,14 +64,14 @@
 						</div>
 
 						<div class="mb-3">
-							<h:outputLabel value="Descrição:" styleClass="control-label" />
+							<h:outputLabel value="Description:" styleClass="control-label" />
 							<h:inputText id="itNome"
 								value="#{servicoController.servico.descricao}"
 								styleClass="form-control" />
 							<h:message for="itNome" style="color:red" />
 						</div>
 						<div class="mb-3">
-							<h:outputLabel value="Valor:" styleClass="control-label" />
+							<h:outputLabel value="Price:" styleClass="control-label" />
 							<h:inputText id="itLogin"
 								value="#{servicoController.servico.valor}"
 								styleClass="form-control">
@@ -84,7 +83,7 @@
 
 						<div class="row">
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Incluir"
+								<h:commandButton value="Add"
 									disabled="#{servicoController.servico.id != null}"
 									actionListener="#{servicoController.incluir}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control">
@@ -92,7 +91,7 @@
 								</h:commandButton>
 							</div>
 							<div class="col-md-3 mb-3">
-								<h:commandButton value="Limpar"
+								<h:commandButton value="Clean"
 									actionListener="#{servicoController.limpar}"
 									styleClass="col-md-2 mb-3 btn btn-default form-control">
 									<f:ajax execute="@this" render="@all" />
@@ -116,38 +115,38 @@
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Filme</f:facet>
+									<f:facet name="header">Title</f:facet>
 									<h:outputLabel value="#{obj.titulo}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Gênero</f:facet>
+									<f:facet name="header">Movie Genre</f:facet>
 									<h:outputLabel value="#{obj.movieGenre.label}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Duração</f:facet>
+									<f:facet name="header">Duration</f:facet>
 									<h:outputLabel value="#{obj.duration}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Diretor</f:facet>
+									<f:facet name="header">Director</f:facet>
 									<h:outputLabel value="#{obj.director}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Ano de Lançamento</f:facet>
+									<f:facet name="header">Release Year</f:facet>
 									<h:outputLabel value="#{obj.releaseYear}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Descrição</f:facet>
+									<f:facet name="header">Description</f:facet>
 									<h:commandLink value="#{obj.descricao}"
 										actionListener="#{servicoController.editar(obj.id)}" />
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Valor</f:facet>
+									<f:facet name="header">Price</f:facet>
 									<h:outputLabel value="#{obj.valor}"
 										actionListener="#{servicoController.editar(obj.id)}">
 										<f:convertNumber locale="pt_BR" currencySymbol="R$"

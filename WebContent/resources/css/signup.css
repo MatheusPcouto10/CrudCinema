@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("http://yesofcorsa.com/wp-content/uploads/2017/05/Cinema-Wallpaper-Free.jpg") no-repeat center center fixed;
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "Roboto";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+    font-family: "Montserrat", sans-serif;
+}
+
+body::before {
+  z-index: -1;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+    margin: 70px auto;
+    background-color: white;
+    /* border: 2px red solid; */
+    border-radius: 5px;
+    width: 400px;
+    height: 590px;
+    box-shadow: 2px 3px 10px rgb(184, 184, 184);
+}
+
+/* Sign Up */
+#main-title {
+    /* border: 2px red solid; */
+    text-align: center;
+    font-size: 25px;
+    padding: 30px 30px 10px 30px;
+    font-weight: 700;
+    color: rgb(20, 20, 20);
+} 
+
+/* It only takes a minute! */
+#subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: rgb(70, 70, 70);
+}
+
+form {
+    /* border: 2px red solid; */
+    padding: 20px 40px 20px 40px;
+    
+}
+
+.placeholders {
+    /* border: 2px red solid; */
+    height: 85px;
+}
+
+.placeholders > label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    /* border: 2px red solid; */
+}
+
+.placeholders input {
+    /* border: 2px red solid; */
+    width: 100%;
+    height: 35px;
+}
+
+input::placeholder {
+    font-family: 'Montserrat';
+    /* border: 2px red solid; */
+}
+
+
+.form .button {
+  cursor: pointer;
+  background: #d60e0e;
+  width: 100%;
+  padding: 10px 15px;
+  border: 0;
+  color: #fff;
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 400;
+
+}
+.form .button:hover {
+  background: #990a0a;

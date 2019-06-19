@@ -8,7 +8,7 @@
 	<ui:define name="conteudo">
 			<div class="container">
 				<div class="navbar navbar-inverse">
-					<div class="navbar-brand" style="width: 100%; text-align: center;">Cadastro	de Usuário</div>
+					<div class="navbar-brand" style="width: 100%; text-align: center;">Sale Details</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-xs-updated">
@@ -16,17 +16,17 @@
 							<h:messages id="messages" style="color:red" globalOnly="false"  />
 		
 							<div class="mb-3">
-								<h:outputLabel value="Cliente: " styleClass="control-label" />
+								<h:outputLabel value="Customer: " styleClass="control-label" />
 								<h:outputText value=" #{detalhesVendaController.venda.cliente}" styleClass="control-label" />
 							</div>
 							<div class="mb-3">
-								<h:outputLabel value="Data da Venda: " styleClass="control-label" />
+								<h:outputLabel value="Sale Date: " styleClass="control-label" />
 								<h:outputText value=" #{detalhesVendaController.venda.data}" styleClass="control-label" >
 									<f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
 								</h:outputText>
 							</div>
 							<div class="mb-3">
-								<h:outputLabel value="Total da venda: " styleClass="control-label" />
+								<h:outputLabel value="Total Sale: " styleClass="control-label" />
 								<h:outputText value=" #{detalhesVendaController.venda.totalVenda}" styleClass="control-label" >
 									<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
 								</h:outputText>
@@ -35,21 +35,21 @@
 							<hr/>
 							
 							<div class="mb-3">
-								<h:outputLabel value="Itens vendidos: " styleClass="control-label" />
+								<h:outputLabel value="Items Sold: " styleClass="control-label" />
 								<h:dataTable value="#{detalhesVendaController.venda.listaItemVenda}" var="obj" styleClass="table table-striped table-hover">>
 									
 									<h:column>
-										<f:facet name="header">Filme</f:facet>
+										<f:facet name="header">Movie</f:facet>
 										<h:outputLabel value="#{obj.servico.titulo}" />
 									</h:column>
 									
 									<h:column>
-										<f:facet name="header">Descrição</f:facet>
+										<f:facet name="header">Description</f:facet>
 										<h:outputLabel value="#{obj.servico.descricao}" />
 									</h:column>
 									
 									<h:column>
-										<f:facet name="header">Valor</f:facet>
+										<f:facet name="header">Price</f:facet>
 										<h:outputLabel value="#{obj.valor}">
 											<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
 										</h:outputLabel>
@@ -58,7 +58,7 @@
 								</h:dataTable>
 							</div>
 							<div class="mb-3">								
-								<h:commandButton value="Voltar" onclick="history.go(-1); return false;" styleClass="col-md-2 mb-3 btn btn-default form-control" />
+								<h:commandButton value="Back" onclick="history.go(-1); return false;" styleClass="col-md-2 mb-3 btn btn-default form-control" />
 							</div>
 						</h:form>
 					</div>
