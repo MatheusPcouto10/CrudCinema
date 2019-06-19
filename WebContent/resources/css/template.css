@@ -15,6 +15,7 @@ body {
 	grid-area: aside;
 	vertical-align: middle;
 	text-align: center;
+	background: #d60e0e;
 }
 
 .o-main {
@@ -24,7 +25,6 @@ body {
 .o-footer {
 	grid-area: footer;
 }
-
 
 .box {
 	border-radius: 0px;
@@ -43,17 +43,24 @@ body {
 }
 
 .button {
-  cursor: pointer;
-  background: #d60e0e;
-  width: 100%;
-  padding: 10px 15px;
-  margin: 1em;
-  border: 0;
-  color: #fff;
-  font-family: "Roboto";
-  font-size: 14px;
-  font-weight: 400;
-
+	cursor: pointer;
+	background: #d60e0e;
+	width: 100%;
+	padding: 10px 15px;
+	margin: 1em;
+	border: 0;
+	color: #fff;
+	font-family: "Roboto";
+	font-size: 14px;
+	font-weight: 400;
 }
+
 .button:hover {
-  background: #990a0a;
+	background: #990a0a;
+}
+
+.navbar-movie {
+	width: 100%;
+	text-align: center;
+	background-color: #d60e0e;
+}

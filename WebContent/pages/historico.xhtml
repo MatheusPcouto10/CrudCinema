@@ -5,52 +5,65 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="../template.xhtml">
-<ui:define name="conteudo">
+	<ui:define name="conteudo">
 
-	<center>
-		<h1>Sale History</h1>
 
-		<h:form>
-			<h:messages style="color:red" />
-			
-			<h:dataTable value="#{historicoController.listaVenda}" var="obj">
-				<h:column>
-					<f:facet name="header">Id</f:facet>
-					<h:outputLabel value="#{obj.id}" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Date</f:facet>
-					<h:outputLabel value="#{obj.data}">
-						<f:convertDateTime type="localDate" pattern="dd-MM-yyyy"/>
-					</h:outputLabel>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Customer</f:facet>
-					<h:outputLabel value="#{obj.cliente}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Total Sale</f:facet>
-					<h:outputLabel value="#{obj.totalVenda}">
-						<f:convertNumber  locale="pt_BR" currencySymbol="R$" type="currency"/>
-					</h:outputLabel>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Action</f:facet>
-					<h:commandButton value="Details ..." actionListener="#{historicoController.detalhes(obj)}">
-						<f:ajax execute="@this" render="@none"/>
-					</h:commandButton>
-				</h:column>
-				
+		<div class="container">
 
-			</h:dataTable>
-			
-		</h:form>
-	</center>
-</ui:define>
-</ui:composition>	
-	
+			<div class="navbar navbar-inverse">
+				<div class="navbar-brand navbar-movie">Sale
+					History</div>
+			</div>
+
+
+			<h:form styleClass="form-horizontal">
+				<div class="md-3">
+					<h:dataTable value="#{historicoController.listaVenda}" var="obj"
+						styleClass="table table-striped table-hover">
+						
+						<h:column>
+							<f:facet name="header">Id</f:facet>
+							<h:outputLabel value="#{obj.id}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Date</f:facet>
+							<h:outputLabel value="#{obj.data}">
+								<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
+							</h:outputLabel>
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Customer</f:facet>
+							<h:outputLabel value="#{obj.cliente}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Total Sale</f:facet>
+							<h:outputLabel value="#{obj.totalVenda}">
+								<f:convertNumber locale="pt_BR" currencySymbol="R$"
+									type="currency" />
+							</h:outputLabel>
+						</h:column>
+
+
+						<h:column>
+							<f:facet name="header">Action</f:facet>
+							<h:commandButton value="Details ..."
+								actionListener="#{historicoController.detalhes(obj)}">
+								<f:ajax execute="@this" render="@none" />
+							</h:commandButton>
+						</h:column>
+
+
+					</h:dataTable>
+
+				</div>
+			</h:form>
+
+		</div>
+
+	</ui:define>
+</ui:composition>
+
 </html>

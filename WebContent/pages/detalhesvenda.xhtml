@@ -8,7 +8,7 @@
 	<ui:define name="conteudo">
 			<div class="container">
 				<div class="navbar navbar-inverse">
-					<div class="navbar-brand" style="width: 100%; text-align: center;">Sale Details</div>
+					<div class="navbar-brand navbar-movie">Sale Details</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12 col-xs-updated">
@@ -44,7 +44,7 @@
 									</h:column>
 									
 									<h:column>
-										<f:facet name="header">Description</f:facet>
+										<f:facet name="header">Ticket</f:facet>
 										<h:outputLabel value="#{obj.servico.descricao}" />
 									</h:column>
 									
@@ -59,8 +59,10 @@
 							</div>
 							<div class="mb-3">								
 								<h:commandButton value="Back" onclick="history.go(-1); return false;" styleClass="col-md-2 mb-3 btn btn-default form-control" />
+								<br/><br/>
 							</div>
 						</h:form>
+						
 					</div>
 				</div>
 			</div>

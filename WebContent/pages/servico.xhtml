@@ -8,7 +8,7 @@
 	<ui:define name="conteudo">
 		<div class="container">
 			<div class="navbar navbar-inverse">
-				<div class="navbar-brand" style="width: 100%; text-align: center;">Movie Register</div>
+				<div class="navbar-brand navbar-movie">Movie Register</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-xs-updated">
@@ -64,7 +64,7 @@
 						</div>
 
 						<div class="mb-3">
-							<h:outputLabel value="Description:" styleClass="control-label" />
+							<h:outputLabel value="Ticket:" styleClass="control-label" />
 							<h:inputText id="itNome"
 								value="#{servicoController.servico.descricao}"
 								styleClass="form-control" />
@@ -140,7 +140,7 @@
 								</h:column>
 
 								<h:column>
-									<f:facet name="header">Description</f:facet>
+									<f:facet name="header">Ticket</f:facet>
 									<h:commandLink value="#{obj.descricao}"
 										actionListener="#{servicoController.editar(obj.id)}" />
 								</h:column>

@@ -20,10 +20,10 @@
 	<header class="o-header">
 		<div class="box navbar navbar-inverse header">
 			<h1>Movie Theater System</h1>
-
 			<div style="text-align: center;">
 				<h:form>
-					<h:outputLabel value="Hello, #{templateController.usuarioLogado.nome}!" />
+					<h:outputLabel
+						value="Hello, #{templateController.usuarioLogado.nome}!" />
 					<h:commandLink value=" (Logout)"
 						action="#{templateController.encerrarSessao}" style="color:white" />
 				</h:form>
@@ -35,28 +35,29 @@
 	<aside class="o-aside">
 		<div class="box sidebar" style="text-align: center;">
 			<ui:insert name="menu">
-				<h1>Menu</h1>
 				<h:form>
-					<h:panelGrid columns="5">
+					<hr />
+					<center>
+						<h:panelGrid columns="5">
+							<h:commandButton value="User Register"
+								disabled="#{templateController.usuarioLogado.perfil.value == 1}"
+								class="button"
+								action="#{templateController.redirecionar('/CrudCinema/faces/pages/usuario2.xhtml')}" />
+							<h:commandButton value="Movie Register"
+								disabled="#{templateController.usuarioLogado.perfil.value == 1}"
+								class="button"
+								action="#{templateController.redirecionar('/CrudCinema/faces/pages/servico.xhtml')}" />
+							<h:commandButton value="Box Office" class="button"
+								action="#{templateController.redirecionar('/CrudCinema/faces/pages/vendaservico.xhtml')}" />
+							<h:commandButton
+								value="Cart (#{templateController.qtdItensCarrinho})"
+								class="button"
+								action="#{templateController.redirecionar('/CrudCinema/faces/pages/carrinho.xhtml')}" />
+							<h:commandButton value="Sale History" class="button"
+								action="#{templateController.redirecionar('/CrudCinema/faces/pages/historico.xhtml')}" />
 
-						<h:commandButton value="User Register"
-							disabled="#{templateController.usuarioLogado.perfil.value == 1}"
-							class="button"
-							action="#{templateController.redirecionar('/CrudCinema/faces/pages/usuario2.xhtml')}" />
-						<h:commandButton value="Movie Register"
-							disabled="#{templateController.usuarioLogado.perfil.value == 1}"
-							class="button"
-							action="#{templateController.redirecionar('/CrudCinema/faces/pages/servico.xhtml')}" />
-						<h:commandButton value="Box Office" class="button"
-							action="#{templateController.redirecionar('/CrudCinema/faces/pages/vendaservico.xhtml')}" />
-						<h:commandButton
-							value="Cart (#{templateController.qtdItensCarrinho})"
-							class="button"
-							action="#{templateController.redirecionar('/CrudCinema/faces/pages/carrinho.xhtml')}" />
-						<h:commandButton value="Sale History" class="button"
-							action="#{templateController.redirecionar('/CrudCinema/faces/pages/historico.xhtml')}" />
-
-					</h:panelGrid>
+						</h:panelGrid>
+					</center>
 					<hr />
 				</h:form>
 			</ui:insert>
@@ -65,10 +66,39 @@
 
 	<main class="o-main"> <br />
 	<ui:insert name="conteudo">
-		<h1>TÓPICOS EM PROGRAMAÇÃO I</h1>
+		<div class="container">
+			<center>
+				<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Donec non blandit ipsum. Vestibulum neque diam, congue vel turpis
+					eget, vehicula rhoncus magna. Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Praesent rhoncus posuere purus. Donec
+					auctor, est et sodales vulputate, sapien tortor congue erat, nec
+					finibus mauris ligula vel nulla. In bibendum arcu id placerat
+					ullamcorper. Duis sit amet risus et mauris posuere aliquet at quis
+					risus. Curabitur mattis nulla in blandit dignissim.</h3>
+				<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Donec non blandit ipsum. Vestibulum neque diam, congue vel turpis
+					eget, vehicula rhoncus magna. Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Praesent rhoncus posuere purus. Donec
+					auctor, est et sodales vulputate, sapien tortor congue erat, nec
+					finibus mauris ligula vel nulla. In bibendum arcu id placerat
+					ullamcorper. Duis sit amet risus et mauris posuere aliquet at quis
+					risus. Curabitur mattis nulla in blandit dignissim.</h3>
+				<h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Donec non blandit ipsum. Vestibulum neque diam, congue vel turpis
+					eget, vehicula rhoncus magna. Lorem ipsum dolor sit amet,
+					consectetur adipiscing elit. Praesent rhoncus posuere purus. Donec
+					auctor, est et sodales vulputate, sapien tortor congue erat, nec
+					finibus mauris ligula vel nulla. In bibendum arcu id placerat
+					ullamcorper. Duis sit amet risus et mauris posuere aliquet at quis
+					risus. Curabitur mattis nulla in blandit dignissim.</h3>
+
+			</center>
+		</div>
 	</ui:insert> </main>
 
 	<footer class="o-footer">
+		<hr />
 		<div class="box footer" style="text-align: center;">
 			<h:outputText value="2019 - HVAS - All rights reserved." />
 		</div>
